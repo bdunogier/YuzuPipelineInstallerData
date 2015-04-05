@@ -1,0 +1,10 @@
+{
+    "name": "bdunogier/pipeline-bundle-data",
+    "authors": [
+        {
+            "name": "Bertrand Dunogier",
+            "email": "bd@ez.no"
+        }
+    ],
+    "require": {}
+}
