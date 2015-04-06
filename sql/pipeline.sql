@@ -16,21 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ezapprove_items`
---
-
-DROP TABLE IF EXISTS `ezapprove_items`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezapprove_items` (
-  `collaboration_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `workflow_process_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezapprove_items`
 --
 
@@ -38,23 +23,6 @@ LOCK TABLES `ezapprove_items` WRITE;
 /*!40000 ALTER TABLE `ezapprove_items` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezapprove_items` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezbasket`
---
-
-DROP TABLE IF EXISTS `ezbasket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezbasket` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `productcollection_id` int(11) NOT NULL DEFAULT '0',
-  `session_id` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `ezbasket_session_id` (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezbasket`
@@ -66,24 +34,6 @@ LOCK TABLES `ezbasket` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezbinaryfile`
---
-
-DROP TABLE IF EXISTS `ezbinaryfile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezbinaryfile` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `download_count` int(11) NOT NULL DEFAULT '0',
-  `filename` varchar(255) NOT NULL DEFAULT '',
-  `mime_type` varchar(255) NOT NULL DEFAULT '',
-  `original_filename` varchar(255) NOT NULL DEFAULT '',
-  `version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`contentobject_attribute_id`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezbinaryfile`
 --
 
@@ -91,27 +41,6 @@ LOCK TABLES `ezbinaryfile` WRITE;
 /*!40000 ALTER TABLE `ezbinaryfile` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezbinaryfile` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcobj_state`
---
-
-DROP TABLE IF EXISTS `ezcobj_state`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcobj_state` (
-  `default_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(45) NOT NULL DEFAULT '',
-  `language_mask` bigint(20) NOT NULL DEFAULT '0',
-  `priority` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezcobj_state_identifier` (`group_id`,`identifier`),
-  KEY `ezcobj_state_lmask` (`language_mask`),
-  KEY `ezcobj_state_priority` (`priority`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcobj_state`
@@ -124,24 +53,6 @@ INSERT INTO `ezcobj_state` VALUES (2,2,1,'not_locked',3,0),(2,2,2,'locked',3,1);
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcobj_state_group`
---
-
-DROP TABLE IF EXISTS `ezcobj_state_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcobj_state_group` (
-  `default_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(45) NOT NULL DEFAULT '',
-  `language_mask` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezcobj_state_group_identifier` (`identifier`),
-  KEY `ezcobj_state_group_lmask` (`language_mask`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcobj_state_group`
 --
 
@@ -150,23 +61,6 @@ LOCK TABLES `ezcobj_state_group` WRITE;
 INSERT INTO `ezcobj_state_group` VALUES (2,2,'ez_lock',3);
 /*!40000 ALTER TABLE `ezcobj_state_group` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcobj_state_group_language`
---
-
-DROP TABLE IF EXISTS `ezcobj_state_group_language`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcobj_state_group_language` (
-  `contentobject_state_group_id` int(11) NOT NULL DEFAULT '0',
-  `description` longtext NOT NULL,
-  `language_id` bigint(20) NOT NULL DEFAULT '0',
-  `real_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `name` varchar(45) NOT NULL DEFAULT '',
-  PRIMARY KEY (`contentobject_state_group_id`,`real_language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcobj_state_group_language`
@@ -179,22 +73,6 @@ INSERT INTO `ezcobj_state_group_language` VALUES (2,'',3,2,'Lock');
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcobj_state_language`
---
-
-DROP TABLE IF EXISTS `ezcobj_state_language`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcobj_state_language` (
-  `contentobject_state_id` int(11) NOT NULL DEFAULT '0',
-  `description` longtext NOT NULL,
-  `language_id` bigint(20) NOT NULL DEFAULT '0',
-  `name` varchar(45) NOT NULL DEFAULT '',
-  PRIMARY KEY (`contentobject_state_id`,`language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcobj_state_language`
 --
 
@@ -203,20 +81,6 @@ LOCK TABLES `ezcobj_state_language` WRITE;
 INSERT INTO `ezcobj_state_language` VALUES (1,'',3,'Not locked'),(2,'',3,'Locked');
 /*!40000 ALTER TABLE `ezcobj_state_language` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcobj_state_link`
---
-
-DROP TABLE IF EXISTS `ezcobj_state_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcobj_state_link` (
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_state_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`contentobject_id`,`contentobject_state_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcobj_state_link`
@@ -229,30 +93,6 @@ INSERT INTO `ezcobj_state_link` VALUES (1,1),(4,1),(10,1),(11,1),(12,1),(13,1),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcollab_group`
---
-
-DROP TABLE IF EXISTS `ezcollab_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_group` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `depth` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_open` int(11) NOT NULL DEFAULT '1',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `parent_group_id` int(11) NOT NULL DEFAULT '0',
-  `path_string` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezcollab_group_depth` (`depth`),
-  KEY `ezcollab_group_path` (`path_string`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcollab_group`
 --
 
@@ -260,33 +100,6 @@ LOCK TABLES `ezcollab_group` WRITE;
 /*!40000 ALTER TABLE `ezcollab_group` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcollab_group` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcollab_item`
---
-
-DROP TABLE IF EXISTS `ezcollab_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_item` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `data_float1` float NOT NULL DEFAULT '0',
-  `data_float2` float NOT NULL DEFAULT '0',
-  `data_float3` float NOT NULL DEFAULT '0',
-  `data_int1` int(11) NOT NULL DEFAULT '0',
-  `data_int2` int(11) NOT NULL DEFAULT '0',
-  `data_int3` int(11) NOT NULL DEFAULT '0',
-  `data_text1` longtext NOT NULL,
-  `data_text2` longtext NOT NULL,
-  `data_text3` longtext NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '1',
-  `type_identifier` varchar(40) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcollab_item`
@@ -298,26 +111,6 @@ LOCK TABLES `ezcollab_item` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcollab_item_group_link`
---
-
-DROP TABLE IF EXISTS `ezcollab_item_group_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_item_group_link` (
-  `collaboration_id` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL DEFAULT '0',
-  `is_active` int(11) NOT NULL DEFAULT '1',
-  `is_read` int(11) NOT NULL DEFAULT '0',
-  `last_read` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`collaboration_id`,`group_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcollab_item_group_link`
 --
 
@@ -325,25 +118,6 @@ LOCK TABLES `ezcollab_item_group_link` WRITE;
 /*!40000 ALTER TABLE `ezcollab_item_group_link` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcollab_item_group_link` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcollab_item_message_link`
---
-
-DROP TABLE IF EXISTS `ezcollab_item_message_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_item_message_link` (
-  `collaboration_id` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_id` int(11) NOT NULL DEFAULT '0',
-  `message_type` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `participant_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcollab_item_message_link`
@@ -355,27 +129,6 @@ LOCK TABLES `ezcollab_item_message_link` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcollab_item_participant_link`
---
-
-DROP TABLE IF EXISTS `ezcollab_item_participant_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_item_participant_link` (
-  `collaboration_id` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `is_active` int(11) NOT NULL DEFAULT '1',
-  `is_read` int(11) NOT NULL DEFAULT '0',
-  `last_read` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `participant_id` int(11) NOT NULL DEFAULT '0',
-  `participant_role` int(11) NOT NULL DEFAULT '1',
-  `participant_type` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`collaboration_id`,`participant_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcollab_item_participant_link`
 --
 
@@ -383,23 +136,6 @@ LOCK TABLES `ezcollab_item_participant_link` WRITE;
 /*!40000 ALTER TABLE `ezcollab_item_participant_link` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcollab_item_participant_link` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcollab_item_status`
---
-
-DROP TABLE IF EXISTS `ezcollab_item_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_item_status` (
-  `collaboration_id` int(11) NOT NULL DEFAULT '0',
-  `is_active` int(11) NOT NULL DEFAULT '1',
-  `is_read` int(11) NOT NULL DEFAULT '0',
-  `last_read` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`collaboration_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcollab_item_status`
@@ -411,21 +147,6 @@ LOCK TABLES `ezcollab_item_status` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcollab_notification_rule`
---
-
-DROP TABLE IF EXISTS `ezcollab_notification_rule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_notification_rule` (
-  `collab_identifier` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcollab_notification_rule`
 --
 
@@ -433,24 +154,6 @@ LOCK TABLES `ezcollab_notification_rule` WRITE;
 /*!40000 ALTER TABLE `ezcollab_notification_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcollab_notification_rule` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcollab_profile`
---
-
-DROP TABLE IF EXISTS `ezcollab_profile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_profile` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `data_text1` longtext NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `main_group` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcollab_profile`
@@ -462,32 +165,6 @@ LOCK TABLES `ezcollab_profile` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcollab_simple_message`
---
-
-DROP TABLE IF EXISTS `ezcollab_simple_message`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcollab_simple_message` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `data_float1` float NOT NULL DEFAULT '0',
-  `data_float2` float NOT NULL DEFAULT '0',
-  `data_float3` float NOT NULL DEFAULT '0',
-  `data_int1` int(11) NOT NULL DEFAULT '0',
-  `data_int2` int(11) NOT NULL DEFAULT '0',
-  `data_int3` int(11) NOT NULL DEFAULT '0',
-  `data_text1` longtext NOT NULL,
-  `data_text2` longtext NOT NULL,
-  `data_text3` longtext NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_type` varchar(40) NOT NULL DEFAULT '',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcollab_simple_message`
 --
 
@@ -495,23 +172,6 @@ LOCK TABLES `ezcollab_simple_message` WRITE;
 /*!40000 ALTER TABLE `ezcollab_simple_message` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcollab_simple_message` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontent_language`
---
-
-DROP TABLE IF EXISTS `ezcontent_language`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontent_language` (
-  `disabled` int(11) NOT NULL DEFAULT '0',
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `locale` varchar(20) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `ezcontent_language_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontent_language`
@@ -524,23 +184,6 @@ INSERT INTO `ezcontent_language` VALUES (0,2,'eng-GB','English (United Kingdom)'
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentbrowsebookmark`
---
-
-DROP TABLE IF EXISTS `ezcontentbrowsebookmark`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentbrowsebookmark` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezcontentbrowsebookmark_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentbrowsebookmark`
 --
 
@@ -548,24 +191,6 @@ LOCK TABLES `ezcontentbrowsebookmark` WRITE;
 /*!40000 ALTER TABLE `ezcontentbrowsebookmark` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcontentbrowsebookmark` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentbrowserecent`
---
-
-DROP TABLE IF EXISTS `ezcontentbrowserecent`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentbrowserecent` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezcontentbrowserecent_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentbrowserecent`
@@ -578,37 +203,6 @@ INSERT INTO `ezcontentbrowserecent` VALUES (1428245252,1,'eZ Publish',2,14),(142
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentclass`
---
-
-DROP TABLE IF EXISTS `ezcontentclass`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentclass` (
-  `always_available` int(11) NOT NULL DEFAULT '0',
-  `contentobject_name` varchar(255) DEFAULT NULL,
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(50) NOT NULL DEFAULT '',
-  `initial_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `is_container` int(11) NOT NULL DEFAULT '0',
-  `language_mask` bigint(20) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `modifier_id` int(11) NOT NULL DEFAULT '0',
-  `remote_id` varchar(100) NOT NULL DEFAULT '',
-  `serialized_description_list` longtext,
-  `serialized_name_list` longtext,
-  `sort_field` int(11) NOT NULL DEFAULT '1',
-  `sort_order` int(11) NOT NULL DEFAULT '1',
-  `url_alias_name` varchar(255) DEFAULT NULL,
-  `version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`version`),
-  KEY `ezcontentclass_version` (`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentclass`
 --
 
@@ -617,46 +211,6 @@ LOCK TABLES `ezcontentclass` WRITE;
 INSERT INTO `ezcontentclass` VALUES (1,'<short_name|name>',1024392098,14,1,'folder',2,1,3,1082454875,14,'a3d405b81be900468eb153d774f4f0d2',NULL,'a:2:{s:6:\"eng-GB\";s:6:\"Folder\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(0,'<short_title|title>',1024392098,14,2,'article',2,1,3,1082454989,14,'c15b600eb9198b1924063b5a68758232',NULL,'a:2:{s:6:\"eng-GB\";s:7:\"Article\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<name>',1024392098,14,3,'user_group',2,1,3,1048494743,14,'25b4268cdcd01921b808a0d854b877ef',NULL,'a:2:{s:6:\"eng-GB\";s:10:\"User group\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<first_name> <last_name>',1024392098,14,4,'user',2,0,3,1082018364,14,'40faa822edc579b02c25f6bb7beec3ad',NULL,'a:2:{s:6:\"eng-GB\";s:4:\"User\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<name>',1031484992,8,5,'image',2,0,3,1048494784,14,'f6df12aa74e36230eb675f364fccd25a',NULL,'a:2:{s:6:\"eng-GB\";s:5:\"Image\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(0,'<name>',1052385361,14,11,'link',2,0,3,1082455072,14,'74ec6507063150bc813549b22534ad48',NULL,'a:2:{s:6:\"eng-GB\";s:4:\"Link\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<name>',1052385472,14,12,'file',2,0,3,1052385669,14,'637d58bfddf164627bdfd265733280a0',NULL,'a:2:{s:6:\"eng-GB\";s:4:\"File\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(0,'<subject>',1052385685,14,13,'comment',2,0,3,1082455144,14,'000c14f4f475e9f2955dedab72799941',NULL,'a:2:{s:6:\"eng-GB\";s:7:\"Comment\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<name>',1081858024,14,14,'common_ini_settings',2,0,3,1081858024,14,'ffedf2e73b1ea0c3e630e42e2db9c900',NULL,'a:2:{s:6:\"eng-GB\";s:19:\"Common ini settings\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(1,'<title>',1081858045,14,15,'template_look',2,0,3,1081858045,14,'59b43cd9feaaf0e45ac974fb4bbd3f92',NULL,'a:2:{s:6:\"eng-GB\";s:13:\"Template look\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,NULL,0),(0,'<title>',1428245207,14,16,'page_section_2_columns',2,0,3,1428245207,14,'c2636ecba4a0c4919385bfa4d70e558f','a:2:{s:6:\"eng-GB\";s:32:\"Responsive Layout with 2 columns\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:24:\"Page Section (2 Columns)\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245207,14,17,'page_section_3_columns',2,0,3,1428245207,14,'8237e67c2ba74b738c093eeb5e46fb75','a:2:{s:6:\"eng-GB\";s:32:\"Responsive Layout with 3 columns\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:24:\"Page Section (3 Columns)\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245207,14,18,'page_section_4_columns',2,0,3,1428245207,14,'06494e7d8c03ec42d176389ef7be3592','a:2:{s:6:\"eng-GB\";s:32:\"Responsive Layout with 4 columns\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:24:\"Page Section (4 Columns)\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245207,14,19,'banner',2,0,3,1428245207,14,'e97d635bf3070192aeed5c3074d06b65','a:2:{s:6:\"eng-GB\";s:0:\"\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:6:\"Banner\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title> ',1428245208,14,20,'pipeline_theme',2,1,3,1428245208,14,'dd7b8bf277806125d103a007e0b5dcca','a:2:{s:6:\"eng-GB\";s:35:\"Settings for pipeline design bundle\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:14:\"Pipeline Theme\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245208,14,21,'portfolio',2,1,3,1428245208,14,'eb83162af49a95597ca595ac026cf3f4','a:2:{s:6:\"eng-GB\";s:0:\"\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:9:\"Portfolio\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245208,14,22,'contact_form',2,0,3,1428245208,14,'7b7010f2f5dc77d3121a3e4fb59602f4','a:2:{s:6:\"eng-GB\";s:0:\"\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:12:\"Contact Form\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0),(0,'<title>',1428245208,14,23,'page_section_1_column',2,0,3,1428245208,14,'89df95801067cc1ef93b330851ca2ba7','a:2:{s:6:\"eng-GB\";s:31:\"Responsive Layout with 1 column\";s:16:\"always-available\";s:6:\"eng-GB\";}','a:2:{s:6:\"eng-GB\";s:23:\"Page Section (1 Column)\";s:16:\"always-available\";s:6:\"eng-GB\";}',1,1,'',0);
 /*!40000 ALTER TABLE `ezcontentclass` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentclass_attribute`
---
-
-DROP TABLE IF EXISTS `ezcontentclass_attribute`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentclass_attribute` (
-  `can_translate` int(11) DEFAULT '1',
-  `category` varchar(25) NOT NULL DEFAULT '',
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `data_float1` double DEFAULT NULL,
-  `data_float2` double DEFAULT NULL,
-  `data_float3` double DEFAULT NULL,
-  `data_float4` double DEFAULT NULL,
-  `data_int1` int(11) DEFAULT NULL,
-  `data_int2` int(11) DEFAULT NULL,
-  `data_int3` int(11) DEFAULT NULL,
-  `data_int4` int(11) DEFAULT NULL,
-  `data_text1` varchar(50) DEFAULT NULL,
-  `data_text2` varchar(50) DEFAULT NULL,
-  `data_text3` varchar(50) DEFAULT NULL,
-  `data_text4` varchar(255) DEFAULT NULL,
-  `data_text5` longtext,
-  `data_type_string` varchar(50) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(50) NOT NULL DEFAULT '',
-  `is_information_collector` int(11) NOT NULL DEFAULT '0',
-  `is_required` int(11) NOT NULL DEFAULT '0',
-  `is_searchable` int(11) NOT NULL DEFAULT '0',
-  `placement` int(11) NOT NULL DEFAULT '0',
-  `serialized_data_text` longtext,
-  `serialized_description_list` longtext,
-  `serialized_name_list` longtext NOT NULL,
-  `version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`version`),
-  KEY `ezcontentclass_attr_ccid` (`contentclass_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentclass_attribute`
@@ -669,22 +223,6 @@ INSERT INTO `ezcontentclass_attribute` VALUES (1,'',2,0,0,0,0,255,0,0,0,'New art
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentclass_classgroup`
---
-
-DROP TABLE IF EXISTS `ezcontentclass_classgroup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentclass_classgroup` (
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `contentclass_version` int(11) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL DEFAULT '0',
-  `group_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`contentclass_id`,`contentclass_version`,`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentclass_classgroup`
 --
 
@@ -693,23 +231,6 @@ LOCK TABLES `ezcontentclass_classgroup` WRITE;
 INSERT INTO `ezcontentclass_classgroup` VALUES (1,0,1,'Content'),(2,0,1,'Content'),(3,0,2,'Users'),(4,0,2,'Users'),(5,0,3,'Media'),(11,0,1,'Content'),(12,0,3,'Media'),(13,0,1,'Content'),(14,0,4,'Setup'),(15,0,4,'Setup'),(16,0,1,'Content'),(17,0,1,'Content'),(18,0,1,'Content'),(19,0,1,'Content'),(20,0,4,'Setup'),(21,0,1,'Content'),(22,0,1,'Content'),(23,0,1,'Content');
 /*!40000 ALTER TABLE `ezcontentclass_classgroup` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentclass_name`
---
-
-DROP TABLE IF EXISTS `ezcontentclass_name`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentclass_name` (
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `contentclass_version` int(11) NOT NULL DEFAULT '0',
-  `language_id` bigint(20) NOT NULL DEFAULT '0',
-  `language_locale` varchar(20) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`contentclass_id`,`contentclass_version`,`language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentclass_name`
@@ -722,24 +243,6 @@ INSERT INTO `ezcontentclass_name` VALUES (1,0,3,'eng-GB','Folder'),(2,0,3,'eng-G
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentclassgroup`
---
-
-DROP TABLE IF EXISTS `ezcontentclassgroup`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentclassgroup` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `modifier_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentclassgroup`
 --
 
@@ -748,37 +251,6 @@ LOCK TABLES `ezcontentclassgroup` WRITE;
 INSERT INTO `ezcontentclassgroup` VALUES (1031216928,14,1,1033922106,14,'Content'),(1031216941,14,2,1033922113,14,'Users'),(1032009743,14,3,1033922120,14,'Media'),(1081858024,14,4,1081858024,14,'Setup');
 /*!40000 ALTER TABLE `ezcontentclassgroup` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentobject`
---
-
-DROP TABLE IF EXISTS `ezcontentobject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject` (
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `current_version` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `initial_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `language_mask` bigint(20) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) DEFAULT NULL,
-  `owner_id` int(11) NOT NULL DEFAULT '0',
-  `published` int(11) NOT NULL DEFAULT '0',
-  `remote_id` varchar(100) DEFAULT NULL,
-  `section_id` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezcontentobject_remote_id` (`remote_id`),
-  KEY `ezcontentobject_classid` (`contentclass_id`),
-  KEY `ezcontentobject_currentversion` (`current_version`),
-  KEY `ezcontentobject_lmask` (`language_mask`),
-  KEY `ezcontentobject_owner` (`owner_id`),
-  KEY `ezcontentobject_pub` (`published`),
-  KEY `ezcontentobject_status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentobject`
@@ -791,36 +263,6 @@ INSERT INTO `ezcontentobject` VALUES (1,6,1,2,3,1301073466,'eZ Publish',14,10339
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentobject_attribute`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_attribute`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_attribute` (
-  `attribute_original_id` int(11) DEFAULT '0',
-  `contentclassattribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `data_float` double DEFAULT NULL,
-  `data_int` int(11) DEFAULT NULL,
-  `data_text` longtext,
-  `data_type_string` varchar(50) DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `language_code` varchar(20) NOT NULL DEFAULT '',
-  `language_id` bigint(20) NOT NULL DEFAULT '0',
-  `sort_key_int` int(11) NOT NULL DEFAULT '0',
-  `sort_key_string` varchar(255) NOT NULL DEFAULT '',
-  `version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`version`),
-  KEY `ezcontentobject_attribute_co_id_ver_lang_code` (`contentobject_id`,`version`,`language_code`),
-  KEY `ezcontentobject_attribute_language_code` (`language_code`),
-  KEY `ezcontentobject_classattr_id` (`contentclassattribute_id`),
-  KEY `sort_key_int` (`sort_key_int`),
-  KEY `sort_key_string` (`sort_key_string`)
-) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentobject_attribute`
 --
 
@@ -829,26 +271,6 @@ LOCK TABLES `ezcontentobject_attribute` WRITE;
 INSERT INTO `ezcontentobject_attribute` VALUES (0,4,1,0,0,'Welcome to eZ Publish','ezstring',1,'eng-GB',3,0,'welcome to ez publish',6),(0,119,1,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\">This is eZ plain site package with a limited setup of the eZ Publish functionality. For a full blown eZ Publish please chose the Website Interface or the eZ Flow site package at the installation.</paragraph></section>\n','ezxmltext',2,'eng-GB',3,0,'',6),(0,7,4,NULL,NULL,'Main group','ezstring',7,'eng-GB',3,0,'',1),(0,6,4,NULL,NULL,'Users','ezstring',8,'eng-GB',3,0,'',1),(0,8,10,0,0,'Anonymous','ezstring',19,'eng-GB',3,0,'anonymous',2),(0,9,10,0,0,'User','ezstring',20,'eng-GB',3,0,'user',2),(0,12,10,0,0,'','ezuser',21,'eng-GB',3,0,'',2),(0,6,11,0,0,'Guest accounts','ezstring',22,'eng-GB',3,0,'',1),(0,7,11,0,0,'','ezstring',23,'eng-GB',3,0,'',1),(0,6,12,0,0,'Administrator users','ezstring',24,'eng-GB',3,0,'',1),(0,7,12,0,0,'','ezstring',25,'eng-GB',3,0,'',1),(0,6,13,0,0,'Editors','ezstring',26,'eng-GB',3,0,'',1),(0,7,13,0,0,'','ezstring',27,'eng-GB',3,0,'',1),(0,8,14,0,0,'Administrator','ezstring',28,'eng-GB',3,0,'administrator',3),(0,9,14,0,0,'User','ezstring',29,'eng-GB',3,0,'user',3),(30,12,14,0,0,'','ezuser',30,'eng-GB',3,0,'',3),(0,4,41,0,0,'Media','ezstring',98,'eng-GB',3,0,'',1),(0,119,41,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',99,'eng-GB',3,0,'',1),(0,6,42,0,0,'Anonymous Users','ezstring',100,'eng-GB',3,0,'anonymous users',1),(0,7,42,0,0,'User group for the anonymous user','ezstring',101,'eng-GB',3,0,'user group for the anonymous user',1),(0,155,1,0,0,'eZ Publish','ezstring',102,'eng-GB',3,0,'ez publish',6),(0,155,41,0,0,'','ezstring',103,'eng-GB',3,0,'',1),(0,156,1,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\">eZ Publish is a popular open source content management system and development framework. It allows the development of professional, customized and dynamic web solutions. It can be used to build anything from a personal homepage to a multinational corporate website with role based multiuser access, online shopping, discussion forums and other advanced functionality. In addition, because of its open nature, eZ Publish can easily be plugged into, communicate and coexist with existing IT-solutions.</paragraph><section><header>Documentation and guidance</header><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\">The <link target=\"_blank\" url_id=\"9\">eZ Publish documentation</link> covers common topics related to the setup and daily use of the eZ Publish content management system/framework. In addition, it also covers some advanced topics. People who are unfamiliar with eZ Publish should at least read the \"eZ Publish basics\" chapter.</paragraph><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\">If you\'re unable to find an answer/solution to a specific question/problem within the documentation pages, you should make use of the official <link target=\"_blank\" url_id=\"4\">eZ Publish forum</link>. People who need professional help should purchase <link target=\"_blank\" url_id=\"10\">support</link> or <link target=\"_blank\" url_id=\"11\">consulting</link> services. It is also possible to sign up for various <link target=\"_blank\" url_id=\"12\">training sessions</link>.</paragraph><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\">For more information about eZ Publish and other products/services from eZ Systems, please visit <link target=\"_blank\" url_id=\"8\">ez.no</link>.</paragraph></section><section><header>Tutorials</header><section><header><strong>New users</strong></header><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><ul><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" xhtml:id=\"internal-source-marker_0.15448186383582652\" url_id=\"13\">eZ Publish Administration Interface</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" url_id=\"14\">eZ Publish Online Editor Video</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" xhtml:id=\"internal-source-marker_0.15448186383582652\" url_id=\"15\">eZ Flow Video Tutorial</link></paragraph></li></ul></paragraph></section><section><header>Experienced users</header><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><ul><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" url_id=\"16\">How to develop eZ Publish Extensions</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" xhtml:id=\"internal-source-marker_0.15448186383582652\" url_id=\"17\">How to create custom workflow</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" url_id=\"18\">How to use REST API interface</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" url_id=\"19\">Asynchronous publishing</link></paragraph></li><li><paragraph xmlns:tmp=\"http://ez.no/namespaces/ezpublish3/temporary/\"><link target=\"_blank\" xhtml:id=\"internal-source-marker_0.15448186383582652\" url_id=\"20\">Upgrading to 4.5</link></paragraph></li></ul><line>Find more&amp;nbsp;<link target=\"_blank\" url_id=\"21\">tutorials</link>&amp;nbsp;and&amp;nbsp;<link target=\"_blank\" url_id=\"22\">videos</link> online.</line></paragraph></section></section></section>\n','ezxmltext',104,'eng-GB',3,0,'',6),(0,156,41,0,1045487555,'','ezxmltext',105,'eng-GB',3,0,'',1),(108,158,1,0,0,'','ezboolean',108,'eng-GB',3,0,'',6),(0,158,41,0,0,'','ezboolean',109,'eng-GB',3,0,'',1),(0,4,45,0,0,'Setup','ezstring',123,'eng-GB',3,0,'setup',1),(0,155,45,0,0,'','ezstring',124,'eng-GB',3,0,'',1),(0,119,45,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',125,'eng-GB',3,0,'',1),(0,156,45,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',126,'eng-GB',3,0,'',1),(0,158,45,0,0,'','ezboolean',128,'eng-GB',3,0,'',1),(0,4,49,0,0,'Images','ezstring',142,'eng-GB',3,0,'images',1),(0,155,49,0,0,'','ezstring',143,'eng-GB',3,0,'',1),(0,119,49,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',144,'eng-GB',3,0,'',1),(0,156,49,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',145,'eng-GB',3,0,'',1),(0,158,49,0,1,'','ezboolean',146,'eng-GB',3,1,'',1),(0,4,50,0,0,'Files','ezstring',147,'eng-GB',3,0,'files',1),(0,155,50,0,0,'','ezstring',148,'eng-GB',3,0,'',1),(0,119,50,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',149,'eng-GB',3,0,'',1),(0,156,50,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',150,'eng-GB',3,0,'',1),(0,158,50,0,1,'','ezboolean',151,'eng-GB',3,1,'',1),(0,4,51,0,0,'Multimedia','ezstring',152,'eng-GB',3,0,'multimedia',1),(0,155,51,0,0,'','ezstring',153,'eng-GB',3,0,'',1),(0,119,51,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',154,'eng-GB',3,0,'',1),(0,156,51,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',155,'eng-GB',3,0,'',1),(0,158,51,0,1,'','ezboolean',156,'eng-GB',3,1,'',1),(0,159,52,0,0,'Common INI settings','ezstring',157,'eng-GB',2,0,'common ini settings',1),(0,160,52,0,0,'/content/view/full/2/','ezinisetting',158,'eng-GB',2,0,'',1),(0,161,52,0,0,'/content/view/full/2','ezinisetting',159,'eng-GB',2,0,'',1),(0,162,52,0,0,'disabled','ezinisetting',160,'eng-GB',2,0,'',1),(0,163,52,0,0,'disabled','ezinisetting',161,'eng-GB',2,0,'',1),(0,164,52,0,0,'','ezinisetting',162,'eng-GB',2,0,'',1),(0,165,52,0,0,'enabled','ezinisetting',163,'eng-GB',2,0,'',1),(0,166,52,0,0,'disabled','ezinisetting',164,'eng-GB',2,0,'',1),(0,167,52,0,0,'enabled','ezinisetting',165,'eng-GB',2,0,'',1),(0,168,52,0,0,'enabled','ezinisetting',166,'eng-GB',2,0,'',1),(0,169,52,0,0,'=geometry/scale=100;100','ezinisetting',167,'eng-GB',2,0,'',1),(0,170,52,0,0,'=geometry/scale=200;200','ezinisetting',168,'eng-GB',2,0,'',1),(0,171,52,0,0,'=geometry/scale=300;300','ezinisetting',169,'eng-GB',2,0,'',1),(0,172,54,0,0,'Plain site','ezinisetting',170,'eng-GB',2,0,'',2),(0,173,54,0,0,'author=eZ Systems\ncopyright=eZ Systems\ndescription=Content Management System\nkeywords=cms, publish, e-commerce, content management, development framework','ezinisetting',171,'eng-GB',2,0,'',2),(0,174,54,0,0,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"\" filename=\"\" suffix=\"\" basename=\"\" dirpath=\"\" url=\"\" original_filename=\"\" mime_type=\"\" width=\"\" height=\"\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1082016632\"><original attribute_id=\"172\" attribute_version=\"2\" attribute_language=\"eng-GB\"/></ezimage>\n','ezimage',172,'eng-GB',2,0,'',2),(0,175,54,0,0,'0','ezpackage',173,'eng-GB',2,0,'0',2),(0,176,54,0,0,'sitestyle_identifier','ezstring',174,'eng-GB',2,0,'sitestyle_identifier',2),(0,177,54,0,0,'nospam@ez.no','ezinisetting',175,'eng-GB',2,0,'',2),(0,178,54,0,0,'ez.no','ezinisetting',176,'eng-GB',2,0,'',2),(0,179,10,0,0,'','eztext',177,'eng-GB',3,0,'',2),(0,179,14,0,0,'','eztext',178,'eng-GB',3,0,'',3),(0,180,10,0,0,'','ezimage',179,'eng-GB',3,0,'',2),(0,180,14,0,0,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"\" filename=\"\" suffix=\"\" basename=\"\" dirpath=\"\" url=\"\" original_filename=\"\" mime_type=\"\" width=\"\" height=\"\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1301057722\"><original attribute_id=\"180\" attribute_version=\"3\" attribute_language=\"eng-GB\"/></ezimage>\n','ezimage',180,'eng-GB',3,0,'',3),(0,4,56,0,NULL,'Design','ezstring',181,'eng-GB',3,0,'design',1),(0,155,56,0,NULL,'','ezstring',182,'eng-GB',3,0,'',1),(0,119,56,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',183,'eng-GB',3,0,'',1),(0,156,56,0,1045487555,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\"\n         xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\"\n         xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\" />','ezxmltext',184,'eng-GB',3,0,'',1),(0,158,56,0,1,'','ezboolean',185,'eng-GB',3,1,'',1),(0,208,57,0,NULL,'Pipeline Theme for eZ Publish','ezstring',186,'eng-GB',2,0,'pipeline theme for ez publish',1),(0,209,57,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Pipeline-Theme-for-eZ-Publish.png\" suffix=\"png\" basename=\"Pipeline-Theme-for-eZ-Publish\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish.png\" original_filename=\"a48da768.png\" mime_type=\"image/png\" width=\"236\" height=\"70\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245245\"><original attribute_id=\"187\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><alias name=\"reference\" filename=\"Pipeline-Theme-for-eZ-Publish_reference.png\" suffix=\"png\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_reference.png\" mime_type=\"image/png\" width=\"236\" height=\"70\" alias_key=\"1672200000\" timestamp=\"1428245267\" is_valid=\"1\"/><alias name=\"small\" filename=\"Pipeline-Theme-for-eZ-Publish_small.png\" suffix=\"png\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_small.png\" mime_type=\"image/png\" width=\"100\" height=\"29\" alias_key=\"3830826210\" timestamp=\"1428245267\" is_valid=\"1\"/><alias name=\"large\" filename=\"Pipeline-Theme-for-eZ-Publish_large.png\" suffix=\"png\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_large.png\" mime_type=\"image/png\" width=\"236\" height=\"70\" alias_key=\"823511551\" timestamp=\"1428245271\" is_valid=\"1\"/></ezimage>\n','ezimage',187,'eng-GB',2,0,'',1),(0,210,57,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<related-objects><relation-list><relation-item priority=\"1\" contentobject-id=\"58\" contentobject-version=\"1\" node-id=\"60\" parent-node-id=\"59\" contentclass-id=\"17\" contentclass-identifier=\"page_section_3_columns\" contentobject-remote-id=\"c32bc7c06384f0fcffff7dcd21ee8b5c\"/><relation-item priority=\"2\" contentobject-id=\"59\" contentobject-version=\"1\" node-id=\"61\" parent-node-id=\"59\" contentclass-id=\"18\" contentclass-identifier=\"page_section_4_columns\" contentobject-remote-id=\"e3b73753e42646b8e1ae10f78cdbbc93\"/><relation-item priority=\"3\" contentobject-id=\"60\" contentobject-version=\"1\" node-id=\"62\" parent-node-id=\"59\" contentclass-id=\"16\" contentclass-identifier=\"page_section_2_columns\" contentobject-remote-id=\"2b4cde09c4dd205a770f9c712a3b9f5c\"/></relation-list></related-objects>\n','ezobjectrelationlist',188,'eng-GB',2,0,'',1),(0,211,57,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph>2015 - Pipeline Theme for eZ Publish 5.x and eZ Platform by <link target=\"_blank\" url_id=\"23\">Sylvain Guittard</link> for <link target=\"_blank\" url_id=\"24\">Agence Yuzu</link></paragraph></section>','ezxmltext',189,'eng-GB',2,0,'',1),(0,212,57,0,NULL,'','eztext',190,'eng-GB',2,0,'',1),(0,213,57,0,NULL,'AgenceYuzu','ezstring',191,'eng-GB',2,0,'agenceyuzu',1),(0,214,57,0,NULL,'AgenceYuzu','ezstring',192,'eng-GB',2,0,'agenceyuzu',1),(0,215,57,0,NULL,'AgenceYuzu','ezstring',193,'eng-GB',2,0,'agenceyuzu',1),(0,216,57,0,NULL,'+AgenceYuzu','ezstring',194,'eng-GB',2,0,'+agenceyuzu',1),(0,217,57,0,NULL,'','ezstring',195,'eng-GB',2,0,'',1),(0,187,58,0,NULL,'Services','ezstring',196,'eng-GB',2,0,'services',1),(0,188,58,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\">Here is an example of the Page Section (3 Columns)</paragraph></section>','ezxmltext',197,'eng-GB',2,0,'',1),(0,189,58,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed view=\"embed\" size=\"original\" align=\"center\" object_id=\"71\"/></paragraph><paragraph align=\"center\">Hotel</paragraph></section>\n','ezxmltext',198,'eng-GB',2,0,'',1),(0,190,58,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed view=\"embed\" size=\"original\" align=\"center\" object_id=\"70\"/></paragraph><paragraph align=\"center\">Surf</paragraph></section>\n','ezxmltext',199,'eng-GB',2,0,'',1),(0,191,58,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed view=\"embed\" size=\"original\" align=\"center\" object_id=\"69\"/></paragraph><paragraph align=\"center\">Sun</paragraph></section>\n','ezxmltext',200,'eng-GB',2,0,'',1),(0,192,58,0,4,'','ezinteger',201,'eng-GB',2,4,'',1),(0,193,58,0,4,'','ezinteger',202,'eng-GB',2,4,'',1),(0,194,58,0,4,'','ezinteger',203,'eng-GB',2,4,'',1),(0,195,59,0,NULL,'Team','ezstring',204,'eng-GB',2,0,'team',1),(0,196,59,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\">Here is an example of the Page Section 4 Columns</paragraph></section>','ezxmltext',205,'eng-GB',2,0,'',1),(0,197,59,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph><embed class=\"img-circle\" view=\"embed\" size=\"original\" align=\"center\" object_id=\"79\"/></paragraph><paragraph align=\"center\">Ryan Orbuch</paragraph></section>\n','ezxmltext',206,'eng-GB',2,0,'',1),(0,198,59,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed class=\"img-circle\" view=\"embed\" size=\"medium\" align=\"center\" object_id=\"76\"/></paragraph><paragraph align=\"center\">Allison Grayce</paragraph></section>\n','ezxmltext',207,'eng-GB',2,0,'',1),(0,199,59,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed class=\"img-circle\" view=\"embed\" size=\"medium\" align=\"center\" object_id=\"78\"/></paragraph><paragraph align=\"center\">Jack McDade</paragraph></section>\n','ezxmltext',208,'eng-GB',2,0,'',1),(0,200,59,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\"><embed class=\"img-circle\" view=\"embed\" size=\"medium\" align=\"center\" object_id=\"75\"/></paragraph><paragraph align=\"center\">Chelsea Otakan</paragraph></section>\n','ezxmltext',209,'eng-GB',2,0,'',1),(0,201,59,0,3,'','ezinteger',210,'eng-GB',2,3,'',1),(0,202,59,0,3,'','ezinteger',211,'eng-GB',2,3,'',1),(0,203,59,0,3,'','ezinteger',212,'eng-GB',2,3,'',1),(0,204,59,0,3,'','ezinteger',213,'eng-GB',2,3,'',1),(0,181,60,0,NULL,'Latest Session','ezstring',214,'eng-GB',2,0,'latest session',1),(0,182,60,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\">Here is an example of the Page Section (2 Columns)</paragraph></section>','ezxmltext',215,'eng-GB',2,0,'',1),(0,183,60,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph>Lorem ipsum dolor sit amet, eum commune ponderum vituperata ei. Quo aliquip singulis laboramus ad, cum ea alia evertitur. Eam ad nonumy regione conceptam, eu nisl erant necessitatibus duo.</paragraph><paragraph><link class=\"btn btn-primary\" anchor_name=\"Portfolio\">Previous Session</link></paragraph></section>','ezxmltext',216,'eng-GB',2,0,'',1),(0,184,60,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph><embed view=\"embed\" size=\"large\" align=\"center\" object_id=\"73\"/></paragraph></section>\n','ezxmltext',217,'eng-GB',2,0,'',1),(0,185,60,0,8,'','ezinteger',218,'eng-GB',2,8,'',1),(0,186,60,0,4,'','ezinteger',219,'eng-GB',2,4,'',1),(0,205,61,0,NULL,'Pipeline Summer 2015','ezstring',220,'eng-GB',2,0,'pipeline summer 2015',1),(0,206,61,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph>Your next trip to Hawaii</paragraph><paragraph><link class=\"btn btn-primary\" anchor_name=\"Contact\">Book Now!</link></paragraph></section>','ezxmltext',221,'eng-GB',2,0,'',1),(0,207,61,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Pipeline-Summer-2015.jpg\" suffix=\"jpg\" basename=\"Pipeline-Summer-2015\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015.jpg\" original_filename=\"78ac2171.jpg\" mime_type=\"image/jpeg\" width=\"985\" height=\"575\" alternative_text=\"pipeline banner\" alias_key=\"1293033771\" timestamp=\"1428245248\"><original attribute_id=\"222\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"575\" Width=\"985\" IsColor=\"1\" ByteOrderMotorola=\"0\"/><alias name=\"reference\" filename=\"Pipeline-Summer-2015_reference.jpg\" suffix=\"jpg\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015_reference.jpg\" mime_type=\"image/jpeg\" width=\"600\" height=\"350\" alias_key=\"1672200000\" timestamp=\"1428245274\" is_valid=\"1\"/><alias name=\"small\" filename=\"Pipeline-Summer-2015_small.jpg\" suffix=\"jpg\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015_small.jpg\" mime_type=\"image/jpeg\" width=\"100\" height=\"58\" alias_key=\"3830826210\" timestamp=\"1428245274\" is_valid=\"1\"/></ezimage>\n','ezimage',222,'eng-GB',2,0,'',1),(0,218,62,0,NULL,'Portfolio','ezstring',223,'eng-GB',2,0,'portfolio',1),(0,219,62,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\">Here is an example of the portfolio layout</paragraph></section>','ezxmltext',224,'eng-GB',2,0,'',1),(0,116,63,0,NULL,'Los Angeles','ezstring',225,'eng-GB',3,0,'los angeles',1),(0,117,63,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',226,'eng-GB',3,0,'',1),(0,118,63,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Los-Angeles.jpg\" suffix=\"jpg\" basename=\"Los-Angeles\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/los-angeles/227-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/los-angeles/227-1-eng-GB/Los-Angeles.jpg\" original_filename=\"43a84003.jpg\" mime_type=\"image/jpeg\" width=\"816\" height=\"612\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245249\"><original attribute_id=\"227\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"612\" Width=\"816\" IsColor=\"1\" ByteOrderMotorola=\"0\"/></ezimage>\n','ezimage',227,'eng-GB',3,0,'',1),(0,116,64,0,NULL,'Miami','ezstring',228,'eng-GB',3,0,'miami',1),(0,117,64,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',229,'eng-GB',3,0,'',1),(0,118,64,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Miami.jpg\" suffix=\"jpg\" basename=\"Miami\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/miami/230-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/miami/230-1-eng-GB/Miami.jpg\" original_filename=\"6f788458.jpg\" mime_type=\"image/jpeg\" width=\"816\" height=\"615\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245249\"><original attribute_id=\"230\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"615\" Width=\"816\" IsColor=\"1\" ByteOrderMotorola=\"0\"/></ezimage>\n','ezimage',230,'eng-GB',3,0,'',1),(0,116,65,0,NULL,'New York','ezstring',231,'eng-GB',3,0,'new york',1),(0,117,65,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',232,'eng-GB',3,0,'',1),(0,118,65,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"New-York.jpg\" suffix=\"jpg\" basename=\"New-York\" dirpath=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/new-york/233-1-eng-GB\" url=\"var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/new-york/233-1-eng-GB/New-York.jpg\" original_filename=\"726491e4.jpg\" mime_type=\"image/jpeg\" width=\"816\" height=\"612\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245250\"><original attribute_id=\"233\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"612\" Width=\"816\" IsColor=\"1\" ByteOrderMotorola=\"0\"/></ezimage>\n','ezimage',233,'eng-GB',3,0,'',1),(0,220,66,0,NULL,'Contact','ezstring',234,'eng-GB',2,0,'contact',1),(0,221,66,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph><strong>Banzai Pipeline</strong></paragraph><paragraph>Ehukai Beach Park, Haleiwa,</paragraph><paragraph>HI 96712 United States</paragraph></section>','ezxmltext',235,'eng-GB',2,0,'',1),(0,222,66,0,1,'','ezgmaplocation',236,'eng-GB',2,0,'',1),(0,223,66,0,NULL,'contact@agenceyuzu.fr','ezemail',237,'eng-GB',2,0,'contact@agenceyuzu.fr',1),(0,224,67,0,NULL,'Testimonial','ezstring',238,'eng-GB',2,0,'testimonial',1),(0,225,67,0,1045487555,'<?xml version=\"1.0\"?>\n<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"><paragraph align=\"center\">Here is an example of the Page Section 1 Column</paragraph><paragraph><embed class=\"img-circle\" view=\"embed\" size=\"medium\" align=\"right\" object_id=\"77\"/></paragraph><paragraph>The best company for discovering surf spots around the world</paragraph><paragraph><emphasize>Cristiano Valim - Surf Addict</emphasize></paragraph></section>\n','ezxmltext',239,'eng-GB',2,0,'',1),(0,4,68,0,NULL,'Icons','ezstring',240,'eng-GB',3,0,'icons',1),(0,155,68,0,NULL,'','ezstring',241,'eng-GB',3,0,'',1),(0,119,68,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',242,'eng-GB',3,0,'',1),(0,156,68,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',243,'eng-GB',3,0,'',1),(244,158,68,0,1,'','ezboolean',244,'eng-GB',3,1,'',1),(0,116,69,0,NULL,'Sun','ezstring',245,'eng-GB',3,0,'sun',1),(0,117,69,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',246,'eng-GB',3,0,'',1),(0,118,69,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Sun.png\" suffix=\"png\" basename=\"Sun\" dirpath=\"var/pipeline_site/storage/images/icons/sun/247-1-eng-GB\" url=\"var/pipeline_site/storage/images/icons/sun/247-1-eng-GB/Sun.png\" original_filename=\"a97086a1.png\" mime_type=\"image/png\" width=\"150\" height=\"150\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245251\"><original attribute_id=\"247\" attribute_version=\"1\" attribute_language=\"eng-GB\"/></ezimage>\n','ezimage',247,'eng-GB',3,0,'',1),(0,116,70,0,NULL,'Map Marker','ezstring',248,'eng-GB',3,0,'map marker',1),(0,117,70,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',249,'eng-GB',3,0,'',1),(0,118,70,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Map-Marker.png\" suffix=\"png\" basename=\"Map-Marker\" dirpath=\"var/pipeline_site/storage/images/icons/map-marker/250-1-eng-GB\" url=\"var/pipeline_site/storage/images/icons/map-marker/250-1-eng-GB/Map-Marker.png\" original_filename=\"d7001df2.png\" mime_type=\"image/png\" width=\"150\" height=\"150\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245251\"><original attribute_id=\"250\" attribute_version=\"1\" attribute_language=\"eng-GB\"/></ezimage>\n','ezimage',250,'eng-GB',3,0,'',1),(0,116,71,0,NULL,'Bed','ezstring',251,'eng-GB',3,0,'bed',1),(0,117,71,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',252,'eng-GB',3,0,'',1),(0,118,71,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Bed.png\" suffix=\"png\" basename=\"Bed\" dirpath=\"var/pipeline_site/storage/images/icons/bed/253-1-eng-GB\" url=\"var/pipeline_site/storage/images/icons/bed/253-1-eng-GB/Bed.png\" original_filename=\"b7e8a298.png\" mime_type=\"image/png\" width=\"150\" height=\"150\" alternative_text=\"\" alias_key=\"1293033771\" timestamp=\"1428245251\"><original attribute_id=\"253\" attribute_version=\"1\" attribute_language=\"eng-GB\"/></ezimage>\n','ezimage',253,'eng-GB',3,0,'',1),(0,4,72,0,NULL,'Session','ezstring',254,'eng-GB',3,0,'session',1),(0,155,72,0,NULL,'','ezstring',255,'eng-GB',3,0,'',1),(0,119,72,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',256,'eng-GB',3,0,'',1),(0,156,72,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',257,'eng-GB',3,0,'',1),(258,158,72,0,1,'','ezboolean',258,'eng-GB',3,1,'',1),(0,116,73,0,NULL,'Sakte','ezstring',259,'eng-GB',3,0,'sakte',1),(0,117,73,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',260,'eng-GB',3,0,'',1),(0,118,73,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Sakte.jpg\" suffix=\"jpg\" basename=\"Sakte\" dirpath=\"var/pipeline_site/storage/images/session/sakte/261-1-eng-GB\" url=\"var/pipeline_site/storage/images/session/sakte/261-1-eng-GB/Sakte.jpg\" original_filename=\"3ced27aa.jpg\" mime_type=\"image/jpeg\" width=\"3361\" height=\"2241\" alternative_text=\"skate\" alias_key=\"1293033771\" timestamp=\"1428245252\"><original attribute_id=\"261\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"2241\" Width=\"3361\" IsColor=\"1\" ByteOrderMotorola=\"1\" Thumbnail.FileType=\"2\" Thumbnail.MimeType=\"image/jpeg\"><array name=\"ifd0\"><item key=\"Orientation\" base64=\"1\">MQ==</item><item key=\"XResolution\" base64=\"1\">MjQwMDAwMC8xMDAwMA==</item><item key=\"YResolution\" base64=\"1\">MjQwMDAwMC8xMDAwMA==</item><item key=\"ResolutionUnit\" base64=\"1\">Mg==</item><item key=\"Software\" base64=\"1\">QWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCk=</item><item key=\"DateTime\" base64=\"1\">MjAxNDowNzowMiAxNjozODowNw==</item><item key=\"Exif_IFD_Pointer\" base64=\"1\">MTcy</item></array><array name=\"exif\"><item key=\"ColorSpace\" base64=\"1\">NjU1MzU=</item><item key=\"ExifImageWidth\" base64=\"1\">MzM2MQ==</item><item key=\"ExifImageLength\" base64=\"1\">MjI0MQ==</item></array></information></ezimage>\n','ezimage',261,'eng-GB',3,0,'',1),(0,4,74,0,NULL,'UI Faces','ezstring',262,'eng-GB',3,0,'ui faces',1),(0,155,74,0,NULL,'','ezstring',263,'eng-GB',3,0,'',1),(0,119,74,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',264,'eng-GB',3,0,'',1),(0,156,74,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',265,'eng-GB',3,0,'',1),(266,158,74,0,1,'','ezboolean',266,'eng-GB',3,1,'',1),(0,116,75,0,NULL,'Chelsea Otakan','ezstring',267,'eng-GB',3,0,'chelsea otakan',1),(0,117,75,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',268,'eng-GB',3,0,'',1),(0,118,75,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Chelsea-Otakan.jpg\" suffix=\"jpg\" basename=\"Chelsea-Otakan\" dirpath=\"var/pipeline_site/storage/images/ui-faces/chelsea-otakan/269-1-eng-GB\" url=\"var/pipeline_site/storage/images/ui-faces/chelsea-otakan/269-1-eng-GB/Chelsea-Otakan.jpg\" original_filename=\"eb852297.jpg\" mime_type=\"image/jpeg\" width=\"128\" height=\"128\" alternative_text=\"Chelsea Otakan\" alias_key=\"1293033771\" timestamp=\"1428245253\"><original attribute_id=\"269\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"128\" Width=\"128\" IsColor=\"1\"/></ezimage>\n','ezimage',269,'eng-GB',3,0,'',1),(0,116,76,0,NULL,'Allison Grayce','ezstring',270,'eng-GB',3,0,'allison grayce',1),(0,117,76,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',271,'eng-GB',3,0,'',1),(0,118,76,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Allison-Grayce.jpg\" suffix=\"jpg\" basename=\"Allison-Grayce\" dirpath=\"var/pipeline_site/storage/images/ui-faces/allison-grayce/272-1-eng-GB\" url=\"var/pipeline_site/storage/images/ui-faces/allison-grayce/272-1-eng-GB/Allison-Grayce.jpg\" original_filename=\"6a7d2645.jpg\" mime_type=\"image/jpeg\" width=\"128\" height=\"128\" alternative_text=\"Allison Grayce\" alias_key=\"1293033771\" timestamp=\"1428245253\"><original attribute_id=\"272\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"128\" Width=\"128\" IsColor=\"1\"/></ezimage>\n','ezimage',272,'eng-GB',3,0,'',1),(0,116,77,0,NULL,'Cristiano Valim','ezstring',273,'eng-GB',3,0,'cristiano valim',1),(0,117,77,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',274,'eng-GB',3,0,'',1),(0,118,77,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Cristiano-Valim.jpg\" suffix=\"jpg\" basename=\"Cristiano-Valim\" dirpath=\"var/pipeline_site/storage/images/ui-faces/cristiano-valim/275-1-eng-GB\" url=\"var/pipeline_site/storage/images/ui-faces/cristiano-valim/275-1-eng-GB/Cristiano-Valim.jpg\" original_filename=\"056f6c91.jpg\" mime_type=\"image/jpeg\" width=\"128\" height=\"128\" alternative_text=\"Cristiano Valim\" alias_key=\"1293033771\" timestamp=\"1428245253\"><original attribute_id=\"275\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"128\" Width=\"128\" IsColor=\"1\"/></ezimage>\n','ezimage',275,'eng-GB',3,0,'',1),(0,116,78,0,NULL,'Jack McDade','ezstring',276,'eng-GB',3,0,'jack mcdade',1),(0,117,78,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',277,'eng-GB',3,0,'',1),(0,118,78,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Jack-McDade.jpg\" suffix=\"jpg\" basename=\"Jack-McDade\" dirpath=\"var/pipeline_site/storage/images/ui-faces/jack-mcdade/278-1-eng-GB\" url=\"var/pipeline_site/storage/images/ui-faces/jack-mcdade/278-1-eng-GB/Jack-McDade.jpg\" original_filename=\"56aae6f1.jpg\" mime_type=\"image/jpeg\" width=\"128\" height=\"128\" alternative_text=\"Jack McDade\" alias_key=\"1293033771\" timestamp=\"1428245254\"><original attribute_id=\"278\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"128\" Width=\"128\" IsColor=\"1\"/></ezimage>\n','ezimage',278,'eng-GB',3,0,'',1),(0,116,79,0,NULL,'Ryan Orbuch','ezstring',279,'eng-GB',3,0,'ryan orbuch',1),(0,117,79,0,1045487555,'<section xmlns:image=\"http://ez.no/namespaces/ezpublish3/image/\" xmlns:xhtml=\"http://ez.no/namespaces/ezpublish3/xhtml/\" xmlns:custom=\"http://ez.no/namespaces/ezpublish3/custom/\"/>','ezxmltext',280,'eng-GB',3,0,'',1),(0,118,79,0,NULL,'<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ezimage serial_number=\"1\" is_valid=\"1\" filename=\"Ryan-Orbuch.jpg\" suffix=\"jpg\" basename=\"Ryan-Orbuch\" dirpath=\"var/pipeline_site/storage/images/ui-faces/ryan-orbuch/281-1-eng-GB\" url=\"var/pipeline_site/storage/images/ui-faces/ryan-orbuch/281-1-eng-GB/Ryan-Orbuch.jpg\" original_filename=\"e253bf12.jpg\" mime_type=\"image/jpeg\" width=\"128\" height=\"128\" alternative_text=\"Ryan Orbuch\" alias_key=\"1293033771\" timestamp=\"1428245254\"><original attribute_id=\"281\" attribute_version=\"1\" attribute_language=\"eng-GB\"/><information Height=\"128\" Width=\"128\" IsColor=\"1\"/></ezimage>\n','ezimage',281,'eng-GB',3,0,'',1);
 /*!40000 ALTER TABLE `ezcontentobject_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentobject_link`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_link` (
-  `contentclassattribute_id` int(11) NOT NULL DEFAULT '0',
-  `from_contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `from_contentobject_version` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `relation_type` int(11) NOT NULL DEFAULT '1',
-  `to_contentobject_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezco_link_from` (`from_contentobject_id`,`from_contentobject_version`,`contentclassattribute_id`),
-  KEY `ezco_link_to_co_id` (`to_contentobject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentobject_link`
@@ -861,27 +283,6 @@ INSERT INTO `ezcontentobject_link` VALUES (210,57,1,1,8,58),(210,57,1,2,8,59),(2
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentobject_name`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_name`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_name` (
-  `content_translation` varchar(20) NOT NULL DEFAULT '',
-  `content_version` int(11) NOT NULL DEFAULT '0',
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `language_id` bigint(20) NOT NULL DEFAULT '0',
-  `name` varchar(255) DEFAULT NULL,
-  `real_translation` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`contentobject_id`,`content_version`,`content_translation`),
-  KEY `ezcontentobject_name_cov_id` (`content_version`),
-  KEY `ezcontentobject_name_lang_id` (`language_id`),
-  KEY `ezcontentobject_name_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentobject_name`
 --
 
@@ -892,39 +293,6 @@ INSERT INTO `ezcontentobject_name` VALUES ('eng-GB',6,1,3,'eZ Publish','eng-GB')
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentobject_trash`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_trash`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_trash` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `contentobject_version` int(11) DEFAULT NULL,
-  `depth` int(11) NOT NULL DEFAULT '0',
-  `is_hidden` int(11) NOT NULL DEFAULT '0',
-  `is_invisible` int(11) NOT NULL DEFAULT '0',
-  `main_node_id` int(11) DEFAULT NULL,
-  `modified_subnode` int(11) DEFAULT '0',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `parent_node_id` int(11) NOT NULL DEFAULT '0',
-  `path_identification_string` longtext,
-  `path_string` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(11) NOT NULL DEFAULT '0',
-  `remote_id` varchar(100) NOT NULL DEFAULT '',
-  `sort_field` int(11) DEFAULT '1',
-  `sort_order` int(11) DEFAULT '1',
-  PRIMARY KEY (`node_id`),
-  KEY `ezcobj_trash_co_id` (`contentobject_id`),
-  KEY `ezcobj_trash_depth` (`depth`),
-  KEY `ezcobj_trash_modified_subnode` (`modified_subnode`),
-  KEY `ezcobj_trash_p_node_id` (`parent_node_id`),
-  KEY `ezcobj_trash_path` (`path_string`),
-  KEY `ezcobj_trash_path_ident` (`path_identification_string`(50))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentobject_trash`
 --
 
@@ -932,40 +300,6 @@ LOCK TABLES `ezcontentobject_trash` WRITE;
 /*!40000 ALTER TABLE `ezcontentobject_trash` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezcontentobject_trash` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcontentobject_tree`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_tree`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_tree` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `contentobject_is_published` int(11) DEFAULT NULL,
-  `contentobject_version` int(11) DEFAULT NULL,
-  `depth` int(11) NOT NULL DEFAULT '0',
-  `is_hidden` int(11) NOT NULL DEFAULT '0',
-  `is_invisible` int(11) NOT NULL DEFAULT '0',
-  `main_node_id` int(11) DEFAULT NULL,
-  `modified_subnode` int(11) DEFAULT '0',
-  `node_id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_node_id` int(11) NOT NULL DEFAULT '0',
-  `path_identification_string` longtext,
-  `path_string` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(11) NOT NULL DEFAULT '0',
-  `remote_id` varchar(100) NOT NULL DEFAULT '',
-  `sort_field` int(11) DEFAULT '1',
-  `sort_order` int(11) DEFAULT '1',
-  PRIMARY KEY (`node_id`),
-  KEY `ezcontentobject_tree_co_id` (`contentobject_id`),
-  KEY `ezcontentobject_tree_depth` (`depth`),
-  KEY `ezcontentobject_tree_p_node_id` (`parent_node_id`),
-  KEY `ezcontentobject_tree_path` (`path_string`),
-  KEY `ezcontentobject_tree_path_ident` (`path_identification_string`(50)),
-  KEY `modified_subnode` (`modified_subnode`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcontentobject_tree`
@@ -978,32 +312,6 @@ INSERT INTO `ezcontentobject_tree` VALUES (0,1,1,0,0,0,1,1428245254,1,1,'','/1/'
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezcontentobject_version`
---
-
-DROP TABLE IF EXISTS `ezcontentobject_version`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcontentobject_version` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `initial_language_id` bigint(20) NOT NULL DEFAULT '0',
-  `language_mask` bigint(20) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `version` int(11) NOT NULL DEFAULT '0',
-  `workflow_event_pos` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezcobj_version_creator_id` (`creator_id`),
-  KEY `ezcobj_version_status` (`status`),
-  KEY `idx_object_version_objver` (`contentobject_id`,`version`)
-) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezcontentobject_version`
 --
 
@@ -1012,27 +320,6 @@ LOCK TABLES `ezcontentobject_version` WRITE;
 INSERT INTO `ezcontentobject_version` VALUES (4,0,14,4,2,3,0,1,0,1,1),(11,1033920737,14,439,2,3,1033920746,1,0,1,0),(12,1033920760,14,440,2,3,1033920775,1,0,1,0),(13,1033920786,14,441,2,3,1033920794,1,0,1,0),(41,1060695450,14,472,2,3,1060695457,1,0,1,0),(42,1072180278,14,473,2,3,1072180330,1,0,1,0),(10,1072180337,14,474,2,3,1072180405,1,0,2,0),(45,1079684084,14,477,2,3,1079684190,1,0,1,0),(49,1080220181,14,488,2,3,1080220197,1,0,1,0),(50,1080220211,14,489,2,3,1080220220,1,0,1,0),(51,1080220225,14,490,2,3,1080220233,1,0,1,0),(52,1082016497,14,491,2,3,1082016591,1,0,1,0),(56,1103023120,14,495,2,3,1103023120,1,0,1,0),(14,1301061783,14,499,2,3,1301062024,1,0,3,0),(54,1301062300,14,500,2,3,1301062375,1,0,2,0),(1,1301072647,14,503,2,3,1301073466,1,0,6,1),(57,1428181977,14,504,2,3,1428182144,1,0,1,0),(58,1427062442,14,505,2,3,1427062455,1,0,1,0),(59,1427097319,14,506,2,3,1427097470,1,0,1,0),(60,1425971194,14,507,2,3,1425971207,1,0,1,0),(61,1425863241,14,508,2,3,1425863261,1,0,1,0),(62,1425251224,14,509,2,3,1425251252,1,0,1,0),(63,1425378270,14,510,2,3,1425378291,1,0,1,0),(64,1425378860,14,511,2,3,1425378904,1,0,1,0),(65,1425378916,14,512,2,3,1425378970,1,0,1,0),(66,1427415719,14,513,2,3,1427417846,1,0,1,0),(67,1427356248,14,514,2,3,1427356263,1,0,1,0),(68,1425975830,14,515,2,3,1425975840,1,0,1,0),(69,1427062329,14,516,2,3,1427062355,1,0,1,0),(70,1427062368,14,517,2,3,1427062379,1,0,1,0),(71,1427062389,14,518,2,3,1427062401,1,0,1,0),(72,1425125258,14,519,2,3,1425125274,1,0,1,0),(73,1425125308,14,520,2,3,1425125330,1,0,1,0),(74,1424901535,14,521,2,3,1424901556,1,0,1,0),(75,1424901588,14,522,2,3,1424901613,1,0,1,0),(76,1424901628,14,523,2,3,1424901671,1,0,1,0),(77,1424901681,14,524,2,3,1424901701,1,0,1,0),(78,1424901715,14,525,2,3,1424901733,1,0,1,0),(79,1424901744,14,526,2,3,1424901760,1,0,1,0);
 /*!40000 ALTER TABLE `ezcontentobject_version` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezcurrencydata`
---
-
-DROP TABLE IF EXISTS `ezcurrencydata`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezcurrencydata` (
-  `auto_rate_value` decimal(10,5) NOT NULL DEFAULT '0.00000',
-  `code` varchar(4) NOT NULL DEFAULT '',
-  `custom_rate_value` decimal(10,5) NOT NULL DEFAULT '0.00000',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `locale` varchar(255) NOT NULL DEFAULT '',
-  `rate_factor` decimal(10,5) NOT NULL DEFAULT '1.00000',
-  `status` int(11) NOT NULL DEFAULT '1',
-  `symbol` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `ezcurrencydata_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezcurrencydata`
@@ -1044,20 +331,6 @@ LOCK TABLES `ezcurrencydata` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezdiscountrule`
---
-
-DROP TABLE IF EXISTS `ezdiscountrule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezdiscountrule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezdiscountrule`
 --
 
@@ -1065,23 +338,6 @@ LOCK TABLES `ezdiscountrule` WRITE;
 /*!40000 ALTER TABLE `ezdiscountrule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezdiscountrule` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezdiscountsubrule`
---
-
-DROP TABLE IF EXISTS `ezdiscountsubrule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezdiscountsubrule` (
-  `discount_percent` float DEFAULT NULL,
-  `discountrule_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `limitation` char(1) DEFAULT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezdiscountsubrule`
@@ -1093,21 +349,6 @@ LOCK TABLES `ezdiscountsubrule` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezdiscountsubrule_value`
---
-
-DROP TABLE IF EXISTS `ezdiscountsubrule_value`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezdiscountsubrule_value` (
-  `discountsubrule_id` int(11) NOT NULL DEFAULT '0',
-  `issection` int(11) NOT NULL DEFAULT '0',
-  `value` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`discountsubrule_id`,`value`,`issection`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezdiscountsubrule_value`
 --
 
@@ -1115,23 +356,6 @@ LOCK TABLES `ezdiscountsubrule_value` WRITE;
 /*!40000 ALTER TABLE `ezdiscountsubrule_value` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezdiscountsubrule_value` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezenumobjectvalue`
---
-
-DROP TABLE IF EXISTS `ezenumobjectvalue`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezenumobjectvalue` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_attribute_version` int(11) NOT NULL DEFAULT '0',
-  `enumelement` varchar(255) NOT NULL DEFAULT '',
-  `enumid` int(11) NOT NULL DEFAULT '0',
-  `enumvalue` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`contentobject_attribute_id`,`contentobject_attribute_version`,`enumid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezenumobjectvalue`
@@ -1143,25 +367,6 @@ LOCK TABLES `ezenumobjectvalue` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezenumvalue`
---
-
-DROP TABLE IF EXISTS `ezenumvalue`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezenumvalue` (
-  `contentclass_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentclass_attribute_version` int(11) NOT NULL DEFAULT '0',
-  `enumelement` varchar(255) NOT NULL DEFAULT '',
-  `enumvalue` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `placement` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`contentclass_attribute_id`,`contentclass_attribute_version`),
-  KEY `ezenumvalue_co_cl_attr_id_co_class_att_ver` (`contentclass_attribute_id`,`contentclass_attribute_version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezenumvalue`
 --
 
@@ -1169,23 +374,6 @@ LOCK TABLES `ezenumvalue` WRITE;
 /*!40000 ALTER TABLE `ezenumvalue` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezenumvalue` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezforgot_password`
---
-
-DROP TABLE IF EXISTS `ezforgot_password`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezforgot_password` (
-  `hash_key` varchar(32) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezforgot_password_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezforgot_password`
@@ -1197,25 +385,6 @@ LOCK TABLES `ezforgot_password` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezgeneral_digest_user_settings`
---
-
-DROP TABLE IF EXISTS `ezgeneral_digest_user_settings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezgeneral_digest_user_settings` (
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `day` varchar(255) NOT NULL DEFAULT '',
-  `digest_type` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `receive_digest` int(11) NOT NULL DEFAULT '0',
-  `time` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezgeneral_digest_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezgeneral_digest_user_settings`
 --
 
@@ -1223,24 +392,6 @@ LOCK TABLES `ezgeneral_digest_user_settings` WRITE;
 /*!40000 ALTER TABLE `ezgeneral_digest_user_settings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezgeneral_digest_user_settings` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezgmaplocation`
---
-
-DROP TABLE IF EXISTS `ezgmaplocation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezgmaplocation` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_version` int(11) NOT NULL DEFAULT '0',
-  `latitude` double NOT NULL DEFAULT '0',
-  `longitude` double NOT NULL DEFAULT '0',
-  `address` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`contentobject_attribute_id`,`contentobject_version`),
-  KEY `latitude_longitude_key` (`latitude`,`longitude`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezgmaplocation`
@@ -1253,23 +404,6 @@ INSERT INTO `ezgmaplocation` VALUES (236,1,21.66323,-158.052435,'');
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezimagefile`
---
-
-DROP TABLE IF EXISTS `ezimagefile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezimagefile` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `filepath` longtext NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  KEY `ezimagefile_coid` (`contentobject_attribute_id`),
-  KEY `ezimagefile_file` (`filepath`(200))
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezimagefile`
 --
 
@@ -1278,25 +412,6 @@ LOCK TABLES `ezimagefile` WRITE;
 INSERT INTO `ezimagefile` VALUES (187,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish.png',2),(222,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015.jpg',4),(227,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/los-angeles/227-1-eng-GB/Los-Angeles.jpg',6),(230,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/miami/230-1-eng-GB/Miami.jpg',8),(233,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/portfolio/new-york/233-1-eng-GB/New-York.jpg',10),(247,'var/pipeline_site/storage/images/icons/sun/247-1-eng-GB/Sun.png',12),(250,'var/pipeline_site/storage/images/icons/map-marker/250-1-eng-GB/Map-Marker.png',14),(253,'var/pipeline_site/storage/images/icons/bed/253-1-eng-GB/Bed.png',16),(261,'var/pipeline_site/storage/images/session/sakte/261-1-eng-GB/Sakte.jpg',18),(269,'var/pipeline_site/storage/images/ui-faces/chelsea-otakan/269-1-eng-GB/Chelsea-Otakan.jpg',20),(272,'var/pipeline_site/storage/images/ui-faces/allison-grayce/272-1-eng-GB/Allison-Grayce.jpg',22),(275,'var/pipeline_site/storage/images/ui-faces/cristiano-valim/275-1-eng-GB/Cristiano-Valim.jpg',24),(278,'var/pipeline_site/storage/images/ui-faces/jack-mcdade/278-1-eng-GB/Jack-McDade.jpg',26),(281,'var/pipeline_site/storage/images/ui-faces/ryan-orbuch/281-1-eng-GB/Ryan-Orbuch.jpg',28),(187,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_reference.png',29),(187,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_small.png',30),(187,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/187-1-eng-GB/Pipeline-Theme-for-eZ-Publish_large.png',31),(222,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015_reference.jpg',32),(222,'var/pipeline_site/storage/images/pipeline-theme-for-ez-publish/pipeline-summer-2015/222-1-eng-GB/Pipeline-Summer-2015_small.jpg',33);
 /*!40000 ALTER TABLE `ezimagefile` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezinfocollection`
---
-
-DROP TABLE IF EXISTS `ezinfocollection`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezinfocollection` (
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modified` int(11) DEFAULT '0',
-  `user_identifier` varchar(34) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezinfocollection_co_id_created` (`contentobject_id`,`created`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezinfocollection`
@@ -1308,30 +423,6 @@ LOCK TABLES `ezinfocollection` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezinfocollection_attribute`
---
-
-DROP TABLE IF EXISTS `ezinfocollection_attribute`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezinfocollection_attribute` (
-  `contentclass_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_attribute_id` int(11) DEFAULT NULL,
-  `contentobject_id` int(11) DEFAULT NULL,
-  `data_float` float DEFAULT NULL,
-  `data_int` int(11) DEFAULT NULL,
-  `data_text` longtext,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `informationcollection_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezinfocollection_attr_cca_id` (`contentclass_attribute_id`),
-  KEY `ezinfocollection_attr_co_id` (`contentobject_id`),
-  KEY `ezinfocollection_attr_coa_id` (`contentobject_attribute_id`),
-  KEY `ezinfocollection_attr_ic_id` (`informationcollection_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezinfocollection_attribute`
 --
 
@@ -1339,21 +430,6 @@ LOCK TABLES `ezinfocollection_attribute` WRITE;
 /*!40000 ALTER TABLE `ezinfocollection_attribute` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezinfocollection_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezisbn_group`
---
-
-DROP TABLE IF EXISTS `ezisbn_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezisbn_group` (
-  `description` varchar(255) NOT NULL DEFAULT '',
-  `group_number` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezisbn_group`
@@ -1366,24 +442,6 @@ INSERT INTO `ezisbn_group` VALUES ('English language',0,1),('English language',1
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezisbn_group_range`
---
-
-DROP TABLE IF EXISTS `ezisbn_group_range`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezisbn_group_range` (
-  `from_number` int(11) NOT NULL DEFAULT '0',
-  `group_from` varchar(32) NOT NULL DEFAULT '',
-  `group_length` int(11) NOT NULL DEFAULT '0',
-  `group_to` varchar(32) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `to_number` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezisbn_group_range`
 --
 
@@ -1392,25 +450,6 @@ LOCK TABLES `ezisbn_group_range` WRITE;
 INSERT INTO `ezisbn_group_range` VALUES (0,'0',1,'5',1,59999),(60000,'600',3,'649',2,64999),(70000,'7',1,'7',3,79999),(80000,'80',2,'94',4,94999),(95000,'950',3,'989',5,98999),(99000,'9900',4,'9989',6,99899),(99900,'99900',5,'99999',7,99999),(10000,'10',2,'10',8,10999);
 /*!40000 ALTER TABLE `ezisbn_group_range` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezisbn_registrant_range`
---
-
-DROP TABLE IF EXISTS `ezisbn_registrant_range`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezisbn_registrant_range` (
-  `from_number` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `isbn_group_id` int(11) NOT NULL DEFAULT '0',
-  `registrant_from` varchar(32) NOT NULL DEFAULT '',
-  `registrant_length` int(11) NOT NULL DEFAULT '0',
-  `registrant_to` varchar(32) NOT NULL DEFAULT '',
-  `to_number` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=927 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezisbn_registrant_range`
@@ -1423,22 +462,6 @@ INSERT INTO `ezisbn_registrant_range` VALUES (0,1,1,'00',2,'19',19999),(20000,2,
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezkeyword`
---
-
-DROP TABLE IF EXISTS `ezkeyword`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezkeyword` (
-  `class_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `keyword` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezkeyword_keyword` (`keyword`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezkeyword`
 --
 
@@ -1446,23 +469,6 @@ LOCK TABLES `ezkeyword` WRITE;
 /*!40000 ALTER TABLE `ezkeyword` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezkeyword` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezkeyword_attribute_link`
---
-
-DROP TABLE IF EXISTS `ezkeyword_attribute_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezkeyword_attribute_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `keyword_id` int(11) NOT NULL DEFAULT '0',
-  `objectattribute_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezkeyword_attr_link_kid_oaid` (`keyword_id`,`objectattribute_id`),
-  KEY `ezkeyword_attr_link_oaid` (`objectattribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezkeyword_attribute_link`
@@ -1474,31 +480,6 @@ LOCK TABLES `ezkeyword_attribute_link` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezmedia`
---
-
-DROP TABLE IF EXISTS `ezmedia`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezmedia` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `controls` varchar(50) DEFAULT NULL,
-  `filename` varchar(255) NOT NULL DEFAULT '',
-  `has_controller` int(11) DEFAULT '0',
-  `height` int(11) DEFAULT NULL,
-  `is_autoplay` int(11) DEFAULT '0',
-  `is_loop` int(11) DEFAULT '0',
-  `mime_type` varchar(50) NOT NULL DEFAULT '',
-  `original_filename` varchar(255) NOT NULL DEFAULT '',
-  `pluginspage` varchar(255) DEFAULT NULL,
-  `quality` varchar(50) DEFAULT NULL,
-  `version` int(11) NOT NULL DEFAULT '0',
-  `width` int(11) DEFAULT NULL,
-  PRIMARY KEY (`contentobject_attribute_id`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezmedia`
 --
 
@@ -1506,26 +487,6 @@ LOCK TABLES `ezmedia` WRITE;
 /*!40000 ALTER TABLE `ezmedia` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezmedia` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezmessage`
---
-
-DROP TABLE IF EXISTS `ezmessage`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezmessage` (
-  `body` longtext,
-  `destination_address` varchar(50) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_sent` int(11) NOT NULL DEFAULT '0',
-  `send_method` varchar(50) NOT NULL DEFAULT '',
-  `send_time` varchar(50) NOT NULL DEFAULT '',
-  `send_weekday` varchar(50) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezmessage`
@@ -1537,24 +498,6 @@ LOCK TABLES `ezmessage` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezmodule_run`
---
-
-DROP TABLE IF EXISTS `ezmodule_run`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezmodule_run` (
-  `function_name` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module_data` longtext,
-  `module_name` varchar(255) DEFAULT NULL,
-  `workflow_process_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezmodule_run_workflow_process_id_s` (`workflow_process_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezmodule_run`
 --
 
@@ -1564,27 +507,6 @@ LOCK TABLES `ezmodule_run` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezmultipricedata`
---
-
-DROP TABLE IF EXISTS `ezmultipricedata`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezmultipricedata` (
-  `contentobject_attr_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_attr_version` int(11) NOT NULL DEFAULT '0',
-  `currency_code` varchar(4) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL DEFAULT '0',
-  `value` decimal(15,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `ezmultipricedata_coa_id` (`contentobject_attr_id`),
-  KEY `ezmultipricedata_coa_version` (`contentobject_attr_version`),
-  KEY `ezmultipricedata_currency_code` (`currency_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezmultipricedata`
 --
 
@@ -1592,35 +514,6 @@ LOCK TABLES `ezmultipricedata` WRITE;
 /*!40000 ALTER TABLE `ezmultipricedata` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezmultipricedata` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `eznode_assignment`
---
-
-DROP TABLE IF EXISTS `eznode_assignment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eznode_assignment` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `contentobject_version` int(11) DEFAULT NULL,
-  `from_node_id` int(11) DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_main` int(11) NOT NULL DEFAULT '0',
-  `op_code` int(11) NOT NULL DEFAULT '0',
-  `parent_node` int(11) DEFAULT NULL,
-  `parent_remote_id` varchar(100) NOT NULL DEFAULT '',
-  `remote_id` varchar(100) NOT NULL DEFAULT '0',
-  `sort_field` int(11) DEFAULT '1',
-  `sort_order` int(11) DEFAULT '1',
-  `priority` int(11) NOT NULL DEFAULT '0',
-  `is_hidden` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `eznode_assignment_co_version` (`contentobject_version`),
-  KEY `eznode_assignment_coid_cov` (`contentobject_id`,`contentobject_version`),
-  KEY `eznode_assignment_is_main` (`is_main`),
-  KEY `eznode_assignment_parent_node` (`parent_node`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `eznode_assignment`
@@ -1633,24 +526,6 @@ INSERT INTO `eznode_assignment` VALUES (8,2,0,4,1,2,5,'','0',1,1,0,0),(42,1,0,5,
 UNLOCK TABLES;
 
 --
--- Table structure for table `eznotificationcollection`
---
-
-DROP TABLE IF EXISTS `eznotificationcollection`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eznotificationcollection` (
-  `data_subject` longtext NOT NULL,
-  `data_text` longtext NOT NULL,
-  `event_id` int(11) NOT NULL DEFAULT '0',
-  `handler` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `transport` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `eznotificationcollection`
 --
 
@@ -1660,23 +535,6 @@ LOCK TABLES `eznotificationcollection` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `eznotificationcollection_item`
---
-
-DROP TABLE IF EXISTS `eznotificationcollection_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eznotificationcollection_item` (
-  `address` varchar(255) NOT NULL DEFAULT '',
-  `collection_id` int(11) NOT NULL DEFAULT '0',
-  `event_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `send_date` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `eznotificationcollection_item`
 --
 
@@ -1684,29 +542,6 @@ LOCK TABLES `eznotificationcollection_item` WRITE;
 /*!40000 ALTER TABLE `eznotificationcollection_item` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eznotificationcollection_item` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `eznotificationevent`
---
-
-DROP TABLE IF EXISTS `eznotificationevent`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eznotificationevent` (
-  `data_int1` int(11) NOT NULL DEFAULT '0',
-  `data_int2` int(11) NOT NULL DEFAULT '0',
-  `data_int3` int(11) NOT NULL DEFAULT '0',
-  `data_int4` int(11) NOT NULL DEFAULT '0',
-  `data_text1` longtext NOT NULL,
-  `data_text2` longtext NOT NULL,
-  `data_text3` longtext NOT NULL,
-  `data_text4` longtext NOT NULL,
-  `event_type_string` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `eznotificationevent`
@@ -1719,24 +554,6 @@ INSERT INTO `eznotificationevent` VALUES (57,1,0,0,'','','','','ezpublish',1,0),
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezoperation_memento`
---
-
-DROP TABLE IF EXISTS `ezoperation_memento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezoperation_memento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `main` int(11) NOT NULL DEFAULT '0',
-  `main_key` varchar(32) NOT NULL DEFAULT '',
-  `memento_data` longtext NOT NULL,
-  `memento_key` varchar(32) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`,`memento_key`),
-  KEY `ezoperation_memento_memento_key_main` (`memento_key`,`main`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezoperation_memento`
 --
 
@@ -1744,35 +561,6 @@ LOCK TABLES `ezoperation_memento` WRITE;
 /*!40000 ALTER TABLE `ezoperation_memento` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezoperation_memento` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezorder`
---
-
-DROP TABLE IF EXISTS `ezorder`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezorder` (
-  `account_identifier` varchar(100) NOT NULL DEFAULT 'default',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `data_text_1` longtext,
-  `data_text_2` longtext,
-  `email` varchar(150) DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ignore_vat` int(11) NOT NULL DEFAULT '0',
-  `is_archived` int(11) NOT NULL DEFAULT '0',
-  `is_temporary` int(11) NOT NULL DEFAULT '1',
-  `order_nr` int(11) NOT NULL DEFAULT '0',
-  `productcollection_id` int(11) NOT NULL DEFAULT '0',
-  `status_id` int(11) DEFAULT '0',
-  `status_modified` int(11) DEFAULT '0',
-  `status_modifier_id` int(11) DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezorder_is_archived` (`is_archived`),
-  KEY `ezorder_is_tmp` (`is_temporary`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezorder`
@@ -1784,27 +572,6 @@ LOCK TABLES `ezorder` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezorder_item`
---
-
-DROP TABLE IF EXISTS `ezorder_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezorder_item` (
-  `description` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_vat_inc` int(11) NOT NULL DEFAULT '0',
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `price` float DEFAULT NULL,
-  `type` varchar(30) DEFAULT NULL,
-  `vat_value` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezorder_item_order_id` (`order_id`),
-  KEY `ezorder_item_type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezorder_item`
 --
 
@@ -1814,19 +581,6 @@ LOCK TABLES `ezorder_item` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezorder_nr_incr`
---
-
-DROP TABLE IF EXISTS `ezorder_nr_incr`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezorder_nr_incr` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezorder_nr_incr`
 --
 
@@ -1834,25 +588,6 @@ LOCK TABLES `ezorder_nr_incr` WRITE;
 /*!40000 ALTER TABLE `ezorder_nr_incr` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezorder_nr_incr` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezorder_status`
---
-
-DROP TABLE IF EXISTS `ezorder_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezorder_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_active` int(11) NOT NULL DEFAULT '1',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `status_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezorder_status_active` (`is_active`),
-  KEY `ezorder_status_name` (`name`),
-  KEY `ezorder_status_sid` (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezorder_status`
@@ -1865,26 +600,6 @@ INSERT INTO `ezorder_status` VALUES (1,1,'Pending',1),(2,1,'Processing',2),(3,1,
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezorder_status_history`
---
-
-DROP TABLE IF EXISTS `ezorder_status_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezorder_status_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `modifier_id` int(11) NOT NULL DEFAULT '0',
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `status_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezorder_status_history_mod` (`modified`),
-  KEY `ezorder_status_history_oid` (`order_id`),
-  KEY `ezorder_status_history_sid` (`status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezorder_status_history`
 --
 
@@ -1892,22 +607,6 @@ LOCK TABLES `ezorder_status_history` WRITE;
 /*!40000 ALTER TABLE `ezorder_status_history` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezorder_status_history` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezpackage`
---
-
-DROP TABLE IF EXISTS `ezpackage`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpackage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `install_date` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `version` varchar(30) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezpackage`
@@ -1920,23 +619,6 @@ INSERT INTO `ezpackage` VALUES (1,1301057838,'plain_site_data','1.0-1'),(2,14282
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezpaymentobject`
---
-
-DROP TABLE IF EXISTS `ezpaymentobject`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpaymentobject` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `payment_string` varchar(255) NOT NULL DEFAULT '',
-  `status` int(11) NOT NULL DEFAULT '0',
-  `workflowprocess_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezpaymentobject`
 --
 
@@ -1944,34 +626,6 @@ LOCK TABLES `ezpaymentobject` WRITE;
 /*!40000 ALTER TABLE `ezpaymentobject` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezpaymentobject` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezpdf_export`
---
-
-DROP TABLE IF EXISTS `ezpdf_export`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpdf_export` (
-  `created` int(11) DEFAULT NULL,
-  `creator_id` int(11) DEFAULT NULL,
-  `export_classes` varchar(255) DEFAULT NULL,
-  `export_structure` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `intro_text` longtext,
-  `modified` int(11) DEFAULT NULL,
-  `modifier_id` int(11) DEFAULT NULL,
-  `pdf_filename` varchar(255) DEFAULT NULL,
-  `show_frontpage` int(11) DEFAULT NULL,
-  `site_access` varchar(255) DEFAULT NULL,
-  `source_node_id` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `sub_text` longtext,
-  `title` varchar(255) DEFAULT NULL,
-  `version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezpdf_export`
@@ -1983,24 +637,6 @@ LOCK TABLES `ezpdf_export` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezpending_actions`
---
-
-DROP TABLE IF EXISTS `ezpending_actions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpending_actions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `action` varchar(64) NOT NULL DEFAULT '',
-  `created` int(11) DEFAULT NULL,
-  `param` longtext,
-  PRIMARY KEY (`id`),
-  KEY `ezpending_actions_action` (`action`),
-  KEY `ezpending_actions_created` (`created`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezpending_actions`
 --
 
@@ -2008,24 +644,6 @@ LOCK TABLES `ezpending_actions` WRITE;
 /*!40000 ALTER TABLE `ezpending_actions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezpending_actions` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezpolicy`
---
-
-DROP TABLE IF EXISTS `ezpolicy`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpolicy` (
-  `function_name` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module_name` varchar(255) DEFAULT NULL,
-  `original_id` int(11) NOT NULL DEFAULT '0',
-  `role_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezpolicy_original_id` (`original_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=332 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezpolicy`
@@ -2038,22 +656,6 @@ INSERT INTO `ezpolicy` VALUES ('*',308,'*',0,2),('*',317,'content',0,3),('login'
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezpolicy_limitation`
---
-
-DROP TABLE IF EXISTS `ezpolicy_limitation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpolicy_limitation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(255) NOT NULL DEFAULT '',
-  `policy_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `policy_id` (`policy_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezpolicy_limitation`
 --
 
@@ -2062,22 +664,6 @@ LOCK TABLES `ezpolicy_limitation` WRITE;
 INSERT INTO `ezpolicy_limitation` VALUES (251,'Section',328),(252,'Section',329),(253,'SiteAccess',331);
 /*!40000 ALTER TABLE `ezpolicy_limitation` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezpolicy_limitation_value`
---
-
-DROP TABLE IF EXISTS `ezpolicy_limitation_value`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpolicy_limitation_value` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `limitation_id` int(11) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezpolicy_limitation_value_val` (`value`)
-) ENGINE=InnoDB AUTO_INCREMENT=480 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezpolicy_limitation_value`
@@ -2090,24 +676,6 @@ INSERT INTO `ezpolicy_limitation_value` VALUES (477,251,'1'),(478,252,'1'),(479,
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezpreferences`
---
-
-DROP TABLE IF EXISTS `ezpreferences`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpreferences` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `value` longtext,
-  PRIMARY KEY (`id`),
-  KEY `ezpreferences_name` (`name`),
-  KEY `ezpreferences_user_id_idx` (`user_id`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezpreferences`
 --
 
@@ -2115,24 +683,6 @@ LOCK TABLES `ezpreferences` WRITE;
 /*!40000 ALTER TABLE `ezpreferences` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezpreferences` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezprest_authcode`
---
-
-DROP TABLE IF EXISTS `ezprest_authcode`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezprest_authcode` (
-  `client_id` varchar(200) NOT NULL DEFAULT '',
-  `expirytime` bigint(20) NOT NULL DEFAULT '0',
-  `id` varchar(200) NOT NULL DEFAULT '',
-  `scope` varchar(200) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `authcode_client_id` (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezprest_authcode`
@@ -2144,23 +694,6 @@ LOCK TABLES `ezprest_authcode` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezprest_authorized_clients`
---
-
-DROP TABLE IF EXISTS `ezprest_authorized_clients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezprest_authorized_clients` (
-  `created` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `rest_client_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `client_user` (`rest_client_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezprest_authorized_clients`
 --
 
@@ -2168,29 +701,6 @@ LOCK TABLES `ezprest_authorized_clients` WRITE;
 /*!40000 ALTER TABLE `ezprest_authorized_clients` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezprest_authorized_clients` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezprest_clients`
---
-
-DROP TABLE IF EXISTS `ezprest_clients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezprest_clients` (
-  `client_id` varchar(200) DEFAULT NULL,
-  `client_secret` varchar(200) DEFAULT NULL,
-  `created` int(11) NOT NULL DEFAULT '0',
-  `description` longtext,
-  `endpoint_uri` varchar(200) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `owner_id` int(11) NOT NULL DEFAULT '0',
-  `updated` int(11) NOT NULL DEFAULT '0',
-  `version` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `client_id_unique` (`client_id`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezprest_clients`
@@ -2202,25 +712,6 @@ LOCK TABLES `ezprest_clients` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezprest_token`
---
-
-DROP TABLE IF EXISTS `ezprest_token`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezprest_token` (
-  `client_id` varchar(200) NOT NULL DEFAULT '',
-  `expirytime` bigint(20) NOT NULL DEFAULT '0',
-  `id` varchar(200) NOT NULL DEFAULT '',
-  `refresh_token` varchar(200) NOT NULL DEFAULT '',
-  `scope` varchar(200) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `token_client_id` (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezprest_token`
 --
 
@@ -2228,20 +719,6 @@ LOCK TABLES `ezprest_token` WRITE;
 /*!40000 ALTER TABLE `ezprest_token` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezprest_token` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezproductcategory`
---
-
-DROP TABLE IF EXISTS `ezproductcategory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezproductcategory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezproductcategory`
@@ -2253,21 +730,6 @@ LOCK TABLES `ezproductcategory` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezproductcollection`
---
-
-DROP TABLE IF EXISTS `ezproductcollection`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezproductcollection` (
-  `created` int(11) DEFAULT NULL,
-  `currency_code` varchar(4) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezproductcollection`
 --
 
@@ -2275,29 +737,6 @@ LOCK TABLES `ezproductcollection` WRITE;
 /*!40000 ALTER TABLE `ezproductcollection` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezproductcollection` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezproductcollection_item`
---
-
-DROP TABLE IF EXISTS `ezproductcollection_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezproductcollection_item` (
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `discount` float DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_vat_inc` int(11) DEFAULT NULL,
-  `item_count` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `price` float DEFAULT '0',
-  `productcollection_id` int(11) NOT NULL DEFAULT '0',
-  `vat_value` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezproductcollection_item_contentobject_id` (`contentobject_id`),
-  KEY `ezproductcollection_item_productcollection_id` (`productcollection_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezproductcollection_item`
@@ -2309,26 +748,6 @@ LOCK TABLES `ezproductcollection_item` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezproductcollection_item_opt`
---
-
-DROP TABLE IF EXISTS `ezproductcollection_item_opt`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezproductcollection_item_opt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `object_attribute_id` int(11) DEFAULT NULL,
-  `option_item_id` int(11) NOT NULL DEFAULT '0',
-  `price` float NOT NULL DEFAULT '0',
-  `value` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `ezproductcollection_item_opt_item_id` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezproductcollection_item_opt`
 --
 
@@ -2338,24 +757,6 @@ LOCK TABLES `ezproductcollection_item_opt` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezpublishingqueueprocesses`
---
-
-DROP TABLE IF EXISTS `ezpublishingqueueprocesses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezpublishingqueueprocesses` (
-  `created` int(11) DEFAULT NULL,
-  `ezcontentobject_version_id` int(11) NOT NULL DEFAULT '0',
-  `finished` int(11) DEFAULT NULL,
-  `pid` int(8) DEFAULT NULL,
-  `started` int(11) DEFAULT NULL,
-  `status` int(2) DEFAULT NULL,
-  PRIMARY KEY (`ezcontentobject_version_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezpublishingqueueprocesses`
 --
 
@@ -2363,23 +764,6 @@ LOCK TABLES `ezpublishingqueueprocesses` WRITE;
 /*!40000 ALTER TABLE `ezpublishingqueueprocesses` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezpublishingqueueprocesses` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezrole`
---
-
-DROP TABLE IF EXISTS `ezrole`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezrole` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_new` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` char(1) DEFAULT NULL,
-  `version` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezrole`
@@ -2392,35 +776,6 @@ INSERT INTO `ezrole` VALUES (1,0,'Anonymous','',0),(2,0,'Administrator','*',0),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezrss_export`
---
-
-DROP TABLE IF EXISTS `ezrss_export`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezrss_export` (
-  `access_url` varchar(255) DEFAULT NULL,
-  `active` int(11) DEFAULT NULL,
-  `created` int(11) DEFAULT NULL,
-  `creator_id` int(11) DEFAULT NULL,
-  `description` longtext,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `image_id` int(11) DEFAULT NULL,
-  `main_node_only` int(11) NOT NULL DEFAULT '1',
-  `modified` int(11) DEFAULT NULL,
-  `modifier_id` int(11) DEFAULT NULL,
-  `node_id` int(11) DEFAULT NULL,
-  `number_of_objects` int(11) NOT NULL DEFAULT '0',
-  `rss_version` varchar(255) DEFAULT NULL,
-  `site_access` varchar(255) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezrss_export`
 --
 
@@ -2428,29 +783,6 @@ LOCK TABLES `ezrss_export` WRITE;
 /*!40000 ALTER TABLE `ezrss_export` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezrss_export` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezrss_export_item`
---
-
-DROP TABLE IF EXISTS `ezrss_export_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezrss_export_item` (
-  `category` varchar(255) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `enclosure` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `rssexport_id` int(11) DEFAULT NULL,
-  `source_node_id` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `subnodes` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`status`),
-  KEY `ezrss_export_rsseid` (`rssexport_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezrss_export_item`
@@ -2462,34 +794,6 @@ LOCK TABLES `ezrss_export_item` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezrss_import`
---
-
-DROP TABLE IF EXISTS `ezrss_import`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezrss_import` (
-  `active` int(11) DEFAULT NULL,
-  `class_description` varchar(255) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL,
-  `class_title` varchar(255) DEFAULT NULL,
-  `class_url` varchar(255) DEFAULT NULL,
-  `created` int(11) DEFAULT NULL,
-  `creator_id` int(11) DEFAULT NULL,
-  `destination_node_id` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `import_description` longtext NOT NULL,
-  `modified` int(11) DEFAULT NULL,
-  `modifier_id` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `object_owner_id` int(11) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `url` longtext,
-  PRIMARY KEY (`id`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezrss_import`
 --
 
@@ -2499,26 +803,6 @@ LOCK TABLES `ezrss_import` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezscheduled_script`
---
-
-DROP TABLE IF EXISTS `ezscheduled_script`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezscheduled_script` (
-  `command` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_report_timestamp` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `process_id` int(11) NOT NULL DEFAULT '0',
-  `progress` int(3) DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezscheduled_script_timestamp` (`last_report_timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezscheduled_script`
 --
 
@@ -2526,36 +810,6 @@ LOCK TABLES `ezscheduled_script` WRITE;
 /*!40000 ALTER TABLE `ezscheduled_script` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezscheduled_script` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezsearch_object_word_link`
---
-
-DROP TABLE IF EXISTS `ezsearch_object_word_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsearch_object_word_link` (
-  `contentclass_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `frequency` float NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(255) NOT NULL DEFAULT '',
-  `integer_value` int(11) NOT NULL DEFAULT '0',
-  `next_word_id` int(11) NOT NULL DEFAULT '0',
-  `placement` int(11) NOT NULL DEFAULT '0',
-  `prev_word_id` int(11) NOT NULL DEFAULT '0',
-  `published` int(11) NOT NULL DEFAULT '0',
-  `section_id` int(11) NOT NULL DEFAULT '0',
-  `word_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezsearch_object_word_link_frequency` (`frequency`),
-  KEY `ezsearch_object_word_link_identifier` (`identifier`),
-  KEY `ezsearch_object_word_link_integer_value` (`integer_value`),
-  KEY `ezsearch_object_word_link_object` (`contentobject_id`),
-  KEY `ezsearch_object_word_link_word` (`word_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4885 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezsearch_object_word_link`
@@ -2568,24 +822,6 @@ INSERT INTO `ezsearch_object_word_link` VALUES (4,1,1,0,4381,'name',0,801,0,0,10
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezsearch_search_phrase`
---
-
-DROP TABLE IF EXISTS `ezsearch_search_phrase`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsearch_search_phrase` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phrase` varchar(250) DEFAULT NULL,
-  `phrase_count` int(11) DEFAULT '0',
-  `result_count` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ezsearch_search_phrase_phrase` (`phrase`),
-  KEY `ezsearch_search_phrase_count` (`phrase_count`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezsearch_search_phrase`
 --
 
@@ -2593,23 +829,6 @@ LOCK TABLES `ezsearch_search_phrase` WRITE;
 /*!40000 ALTER TABLE `ezsearch_search_phrase` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezsearch_search_phrase` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezsearch_word`
---
-
-DROP TABLE IF EXISTS `ezsearch_word`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsearch_word` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `object_count` int(11) NOT NULL DEFAULT '0',
-  `word` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezsearch_word_obj_count` (`object_count`),
-  KEY `ezsearch_word_word_i` (`word`)
-) ENGINE=InnoDB AUTO_INCREMENT=1075 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezsearch_word`
@@ -2622,23 +841,6 @@ INSERT INTO `ezsearch_word` VALUES (800,1,'welcome'),(801,2,'to'),(802,2,'ez'),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezsection`
---
-
-DROP TABLE IF EXISTS `ezsection`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsection` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(255) DEFAULT NULL,
-  `locale` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `navigation_part_identifier` varchar(100) DEFAULT 'ezcontentnavigationpart',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezsection`
 --
 
@@ -2649,25 +851,6 @@ INSERT INTO `ezsection` VALUES (1,'standard','','Standard','ezcontentnavigationp
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezsession`
---
-
-DROP TABLE IF EXISTS `ezsession`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsession` (
-  `data` longtext NOT NULL,
-  `expiration_time` int(11) NOT NULL DEFAULT '0',
-  `session_key` varchar(32) NOT NULL DEFAULT '',
-  `user_hash` varchar(32) NOT NULL DEFAULT '',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`session_key`),
-  KEY `expiration_time` (`expiration_time`),
-  KEY `ezsession_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezsession`
 --
 
@@ -2675,20 +858,6 @@ LOCK TABLES `ezsession` WRITE;
 /*!40000 ALTER TABLE `ezsession` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezsession` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezsite_data`
---
-
-DROP TABLE IF EXISTS `ezsite_data`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsite_data` (
-  `name` varchar(60) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
-  PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezsite_data`
@@ -2701,23 +870,6 @@ INSERT INTO `ezsite_data` VALUES ('ezpublish-release','1'),('ezpublish-version',
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezsubtree_notification_rule`
---
-
-DROP TABLE IF EXISTS `ezsubtree_notification_rule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezsubtree_notification_rule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `use_digest` int(11) DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezsubtree_notification_rule_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezsubtree_notification_rule`
 --
 
@@ -2725,21 +877,6 @@ LOCK TABLES `ezsubtree_notification_rule` WRITE;
 /*!40000 ALTER TABLE `ezsubtree_notification_rule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezsubtree_notification_rule` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `eztipafriend_counter`
---
-
-DROP TABLE IF EXISTS `eztipafriend_counter`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eztipafriend_counter` (
-  `count` int(11) NOT NULL DEFAULT '0',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `requested` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`node_id`,`requested`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `eztipafriend_counter`
@@ -2751,21 +888,6 @@ LOCK TABLES `eztipafriend_counter` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `eztipafriend_request`
---
-
-DROP TABLE IF EXISTS `eztipafriend_request`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eztipafriend_request` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `email_receiver` varchar(100) NOT NULL DEFAULT '',
-  KEY `eztipafriend_request_created` (`created`),
-  KEY `eztipafriend_request_email_rec` (`email_receiver`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `eztipafriend_request`
 --
 
@@ -2775,26 +897,6 @@ LOCK TABLES `eztipafriend_request` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `eztrigger`
---
-
-DROP TABLE IF EXISTS `eztrigger`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eztrigger` (
-  `connect_type` char(1) NOT NULL DEFAULT '',
-  `function_name` varchar(200) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module_name` varchar(200) NOT NULL DEFAULT '',
-  `name` varchar(255) DEFAULT NULL,
-  `workflow_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `eztrigger_def_id` (`module_name`(50),`function_name`(50),`connect_type`),
-  KEY `eztrigger_fetch` (`name`(25),`module_name`(50),`function_name`(50))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `eztrigger`
 --
 
@@ -2802,26 +904,6 @@ LOCK TABLES `eztrigger` WRITE;
 /*!40000 ALTER TABLE `eztrigger` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eztrigger` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezurl`
---
-
-DROP TABLE IF EXISTS `ezurl`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurl` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_valid` int(11) NOT NULL DEFAULT '1',
-  `last_checked` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `original_url_md5` varchar(32) NOT NULL DEFAULT '',
-  `url` longtext,
-  PRIMARY KEY (`id`),
-  KEY `ezurl_url` (`url`(255))
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezurl`
@@ -2834,23 +916,6 @@ INSERT INTO `ezurl` VALUES (1082368571,4,1,0,1082368571,'41caff1d7f5ad51e70ad46a
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezurl_object_link`
---
-
-DROP TABLE IF EXISTS `ezurl_object_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurl_object_link` (
-  `contentobject_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentobject_attribute_version` int(11) NOT NULL DEFAULT '0',
-  `url_id` int(11) NOT NULL DEFAULT '0',
-  KEY `ezurl_ol_coa_id` (`contentobject_attribute_id`),
-  KEY `ezurl_ol_coa_version` (`contentobject_attribute_version`),
-  KEY `ezurl_ol_url_id` (`url_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezurl_object_link`
 --
 
@@ -2859,32 +924,6 @@ LOCK TABLES `ezurl_object_link` WRITE;
 INSERT INTO `ezurl_object_link` VALUES (104,6,9),(104,6,4),(104,6,10),(104,6,11),(104,6,12),(104,6,8),(104,6,13),(104,6,14),(104,6,15),(104,6,16),(104,6,17),(104,6,18),(104,6,19),(104,6,20),(104,6,21),(104,6,22),(189,1,23),(189,1,24);
 /*!40000 ALTER TABLE `ezurl_object_link` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezurlalias`
---
-
-DROP TABLE IF EXISTS `ezurlalias`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurlalias` (
-  `destination_url` longtext NOT NULL,
-  `forward_to_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_imported` int(11) NOT NULL DEFAULT '0',
-  `is_internal` int(11) NOT NULL DEFAULT '1',
-  `is_wildcard` int(11) NOT NULL DEFAULT '0',
-  `source_md5` varchar(32) DEFAULT NULL,
-  `source_url` longtext NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezurlalias_desturl` (`destination_url`(200)),
-  KEY `ezurlalias_forward_to_id` (`forward_to_id`),
-  KEY `ezurlalias_imp_wcard_fwd` (`is_imported`,`is_wildcard`,`forward_to_id`),
-  KEY `ezurlalias_source_md5` (`source_md5`),
-  KEY `ezurlalias_source_url` (`source_url`(255)),
-  KEY `ezurlalias_wcard_fwd` (`is_wildcard`,`forward_to_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezurlalias`
@@ -2897,36 +936,6 @@ INSERT INTO `ezurlalias` VALUES ('content/view/full/2',0,12,1,1,0,'d41d8cd98f00b
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezurlalias_ml`
---
-
-DROP TABLE IF EXISTS `ezurlalias_ml`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurlalias_ml` (
-  `action` longtext NOT NULL,
-  `action_type` varchar(32) NOT NULL DEFAULT '',
-  `alias_redirects` int(11) NOT NULL DEFAULT '1',
-  `id` int(11) NOT NULL DEFAULT '0',
-  `is_alias` int(11) NOT NULL DEFAULT '0',
-  `is_original` int(11) NOT NULL DEFAULT '0',
-  `lang_mask` bigint(20) NOT NULL DEFAULT '0',
-  `link` int(11) NOT NULL DEFAULT '0',
-  `parent` int(11) NOT NULL DEFAULT '0',
-  `text` longtext NOT NULL,
-  `text_md5` varchar(32) NOT NULL DEFAULT '',
-  PRIMARY KEY (`parent`,`text_md5`),
-  KEY `ezurlalias_ml_act_org` (`action`(32),`is_original`),
-  KEY `ezurlalias_ml_actt_org_al` (`action_type`,`is_original`,`is_alias`),
-  KEY `ezurlalias_ml_id` (`id`),
-  KEY `ezurlalias_ml_par_act_id_lnk` (`action`(32),`id`,`link`,`parent`),
-  KEY `ezurlalias_ml_par_lnk_txt` (`parent`,`text`(32),`link`),
-  KEY `ezurlalias_ml_text` (`text`(32),`id`,`link`),
-  KEY `ezurlalias_ml_text_lang` (`text`(32),`lang_mask`,`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezurlalias_ml`
 --
 
@@ -2935,19 +944,6 @@ LOCK TABLES `ezurlalias_ml` WRITE;
 INSERT INTO `ezurlalias_ml` VALUES ('nop:','nop',1,14,0,0,1,14,0,'foo_bar_folder','0288b6883046492fa92e4a84eb67acc9'),('eznode:74','eznode',1,53,0,1,3,53,0,'Session','21d6f40cfb511982e4424e0e250a9557'),('eznode:58','eznode',1,25,0,1,3,25,0,'Design','31c13f47ad87dd7baa2d558a91e0fbb9'),('eznode:48','eznode',1,13,0,1,3,13,0,'Setup2','475e97c0146bfb1c490339546d9e72ee'),('nop:','nop',1,17,0,0,1,17,0,'media2','50e2736330de124f6edea9b008556fe6'),('eznode:76','eznode',1,55,0,1,3,55,0,'UI-Faces','593a344ebc8e7951615e97f93271ce0d'),('eznode:43','eznode',1,9,0,1,3,9,0,'Media','62933a2951ef01f4eafd9bdf4d3cd2f0'),('nop:','nop',1,21,0,0,1,21,0,'setup3','732cefcf28bf4547540609fb1a786a30'),('nop:','nop',1,3,0,0,1,3,0,'users2','86425c35a33507d479f71ade53a669aa'),('eznode:5','eznode',1,2,0,1,3,2,0,'Users','9bc65c2abec141778ffaa729489f3e87'),('eznode:70','eznode',1,49,0,1,3,49,0,'Icons','bd21190449b7e88db48fa0f580a8f666'),('eznode:2','eznode',1,1,0,1,3,1,0,'','d41d8cd98f00b204e9800998ecf8427e'),('eznode:59','eznode',1,38,0,1,2,38,0,'Pipeline-Theme-for-eZ-Publish','e204db70ef103a1d431339852efdc244'),('eznode:14','eznode',1,6,0,1,3,6,2,'Editors','a147e136bfa717592f2bd70bd4b53b17'),('eznode:44','eznode',1,10,0,1,3,10,2,'Anonymous-Users','c2803c3fa1b0b5423237b4e018cae755'),('eznode:12','eznode',1,4,0,1,3,4,2,'Guest-accounts','e57843d836e3af8ab611fde9e2139b3a'),('eznode:13','eznode',1,5,0,1,3,5,2,'Administrator-users','f89fad7f8a3abc8c09e1deb46a420007'),('nop:','nop',1,11,0,0,1,11,3,'anonymous_users2','505e93077a6dde9034ad97a14ab022b1'),('eznode:12','eznode',1,26,0,0,1,4,3,'guest_accounts','70bb992820e73638731aa8de79b3329e'),('eznode:14','eznode',1,29,0,0,1,6,3,'editors','a147e136bfa717592f2bd70bd4b53b17'),('nop:','nop',1,7,0,0,1,7,3,'administrator_users2','a7da338c20bf65f9f789c87296379c2a'),('eznode:13','eznode',1,27,0,0,1,5,3,'administrator_users','aeb8609aa933b0899aa012c71139c58c'),('eznode:44','eznode',1,30,0,0,1,10,3,'anonymous_users','e9e5ad0c05ee1a43715572e5cc545926'),('eznode:15','eznode',1,8,0,1,3,8,5,'Administrator-User','5a9d7b0ec93173ef4fedee023209cb61'),('eznode:15','eznode',1,28,0,0,0,8,7,'administrator_user','a3cca2de936df1e2f805710399989971'),('eznode:53','eznode',1,20,0,1,3,20,9,'Multimedia','2e5bc8831f7ae6a29530e7f1bbf2de9c'),('eznode:52','eznode',1,19,0,1,3,19,9,'Files','45b963397aa40d4a0063e0d85e4fe7a1'),('eznode:51','eznode',1,18,0,1,3,18,9,'Images','59b514174bffe4ae402b3d63aad79fe0'),('eznode:45','eznode',1,12,0,1,3,12,10,'Anonymous-User','ccb62ebca03a31272430bc414bd5cd5b'),('eznode:45','eznode',1,31,0,0,1,12,11,'anonymous_user','c593ec85293ecb0e02d50d4c5c6c20eb'),('eznode:54','eznode',1,22,0,1,2,22,13,'Common-INI-settings','4434993ac013ae4d54bb1f51034d6401'),('nop:','nop',1,15,0,0,1,15,14,'images','59b514174bffe4ae402b3d63aad79fe0'),('eznode:50','eznode',1,16,0,1,2,16,15,'vbanner','c54e2d1b93642e280bdc5d99eab2827d'),('eznode:53','eznode',1,34,0,0,1,20,17,'multimedia','2e5bc8831f7ae6a29530e7f1bbf2de9c'),('eznode:52','eznode',1,33,0,0,1,19,17,'files','45b963397aa40d4a0063e0d85e4fe7a1'),('eznode:51','eznode',1,32,0,0,1,18,17,'images','59b514174bffe4ae402b3d63aad79fe0'),('eznode:54','eznode',1,35,0,0,1,22,21,'common_ini_settings','e59d6834e86cee752ed841f9cd8d5baf'),('eznode:56','eznode',1,37,0,0,2,24,25,'eZ-publish','10e4c3cb527fb9963258469986c16240'),('eznode:56','eznode',1,24,0,1,2,24,25,'Plain-site','49a39d99a955d95aa5d636275656a07a'),('eznode:60','eznode',1,39,0,1,2,39,38,'Services','10cd395cf71c18328c863c08e78f3fd0'),('eznode:62','eznode',1,41,0,1,2,41,38,'Latest-Session','247bb155b3fb45a50f7669d588e8dfec'),('eznode:63','eznode',1,42,0,1,2,42,38,'Pipeline-Summer-2015','24b927d6980575b473d96f5c1ab74c73'),('eznode:68','eznode',1,47,0,1,2,47,38,'Contact','2f8a6bf31f3bd67bd2d9720c58b19c9a'),('eznode:64','eznode',1,43,0,1,2,43,38,'Portfolio','b68e15f27bb5c24c13ead6608ac8c903'),('eznode:69','eznode',1,48,0,1,2,48,38,'Testimonial','ecda465478867dbe6f0f0a2329f30940'),('eznode:61','eznode',1,40,0,1,2,40,38,'Team','f894427cc1c571f79da49605ef8b112f'),('eznode:65','eznode',1,44,0,1,3,44,43,'Los-Angeles','2e26eb91085f6be2779a4f097e1d214c'),('eznode:67','eznode',1,46,0,1,3,46,43,'New-York','d44d6be1a368ad1802285ab8e3dbfa9e'),('eznode:66','eznode',1,45,0,1,3,45,43,'Miami','fee43618da81724b55de9c2f1dc4a2a8'),('eznode:73','eznode',1,52,0,1,3,52,49,'Bed','001cbc059a402b3be7c99be558eaaf73'),('eznode:72','eznode',1,51,0,1,3,51,49,'Map-Marker','696e6d7a5479a914957398b86b69b40d'),('eznode:71','eznode',1,50,0,1,3,50,49,'Sun','ebd556e6dfc99dbed29675ce1c6c68e5'),('eznode:75','eznode',1,54,0,1,3,54,53,'Sakte','6918f52c4f1cf16754320fa3ba7ca3a4'),('eznode:77','eznode',1,56,0,1,3,56,55,'Chelsea-Otakan','1bcd4544ad6476d8cd91a7d56664128f'),('eznode:81','eznode',1,60,0,1,3,60,55,'Ryan-Orbuch','2262750b51fa5a11610b3fb4fcd15fad'),('eznode:78','eznode',1,57,0,1,3,57,55,'Allison-Grayce','31f9f42ee3766cb430f66f6597eefa84'),('eznode:79','eznode',1,58,0,1,3,58,55,'Cristiano-Valim','9af1ec22bba4d3b59b353f0920f07a60'),('eznode:80','eznode',1,59,0,1,3,59,55,'Jack-McDade','fa7f134ebc643ee034256cc788a89a35');
 /*!40000 ALTER TABLE `ezurlalias_ml` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezurlalias_ml_incr`
---
-
-DROP TABLE IF EXISTS `ezurlalias_ml_incr`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurlalias_ml_incr` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezurlalias_ml_incr`
@@ -2960,22 +956,6 @@ INSERT INTO `ezurlalias_ml_incr` VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10)
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezurlwildcard`
---
-
-DROP TABLE IF EXISTS `ezurlwildcard`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezurlwildcard` (
-  `destination_url` longtext NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `source_url` longtext NOT NULL,
-  `type` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezurlwildcard`
 --
 
@@ -2983,24 +963,6 @@ LOCK TABLES `ezurlwildcard` WRITE;
 /*!40000 ALTER TABLE `ezurlwildcard` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezurlwildcard` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezuser`
---
-
-DROP TABLE IF EXISTS `ezuser`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuser` (
-  `contentobject_id` int(11) NOT NULL DEFAULT '0',
-  `email` varchar(150) NOT NULL DEFAULT '',
-  `login` varchar(150) NOT NULL DEFAULT '',
-  `password_hash` varchar(50) DEFAULT NULL,
-  `password_hash_type` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`contentobject_id`),
-  KEY `ezuser_login` (`login`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezuser`
@@ -3013,23 +975,6 @@ INSERT INTO `ezuser` VALUES (10,'nospam@ez.no','anonymous','4e6f6184135228ccd45f
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezuser_accountkey`
---
-
-DROP TABLE IF EXISTS `ezuser_accountkey`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuser_accountkey` (
-  `hash_key` varchar(32) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `hash_key` (`hash_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezuser_accountkey`
 --
 
@@ -3039,22 +984,6 @@ LOCK TABLES `ezuser_accountkey` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezuser_discountrule`
---
-
-DROP TABLE IF EXISTS `ezuser_discountrule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuser_discountrule` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `discountrule_id` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezuser_discountrule`
 --
 
@@ -3062,25 +991,6 @@ LOCK TABLES `ezuser_discountrule` WRITE;
 /*!40000 ALTER TABLE `ezuser_discountrule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezuser_discountrule` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezuser_role`
---
-
-DROP TABLE IF EXISTS `ezuser_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuser_role` (
-  `contentobject_id` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `limit_identifier` varchar(255) DEFAULT '',
-  `limit_value` varchar(255) DEFAULT '',
-  `role_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ezuser_role_contentobject_id` (`contentobject_id`),
-  KEY `ezuser_role_role_id` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezuser_role`
@@ -3093,21 +1003,6 @@ INSERT INTO `ezuser_role` VALUES (12,25,'','',2),(11,28,'','',1),(42,31,'','',1)
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezuser_setting`
---
-
-DROP TABLE IF EXISTS `ezuser_setting`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuser_setting` (
-  `is_enabled` int(11) NOT NULL DEFAULT '0',
-  `max_login` int(11) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezuser_setting`
 --
 
@@ -3116,24 +1011,6 @@ LOCK TABLES `ezuser_setting` WRITE;
 INSERT INTO `ezuser_setting` VALUES (1,1000,10),(1,10,14);
 /*!40000 ALTER TABLE `ezuser_setting` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezuservisit`
---
-
-DROP TABLE IF EXISTS `ezuservisit`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezuservisit` (
-  `current_visit_timestamp` int(11) NOT NULL DEFAULT '0',
-  `failed_login_attempts` int(11) NOT NULL DEFAULT '0',
-  `last_visit_timestamp` int(11) NOT NULL DEFAULT '0',
-  `login_count` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`),
-  KEY `ezuservisit_co_visit_count` (`current_visit_timestamp`,`login_count`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezuservisit`
@@ -3146,21 +1023,6 @@ INSERT INTO `ezuservisit` VALUES (1428245087,0,1301057720,1,14);
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezvatrule`
---
-
-DROP TABLE IF EXISTS `ezvatrule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezvatrule` (
-  `country_code` varchar(255) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vat_type` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezvatrule`
 --
 
@@ -3170,20 +1032,6 @@ LOCK TABLES `ezvatrule` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezvatrule_product_category`
---
-
-DROP TABLE IF EXISTS `ezvatrule_product_category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezvatrule_product_category` (
-  `product_category_id` int(11) NOT NULL DEFAULT '0',
-  `vatrule_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`vatrule_id`,`product_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezvatrule_product_category`
 --
 
@@ -3191,21 +1039,6 @@ LOCK TABLES `ezvatrule_product_category` WRITE;
 /*!40000 ALTER TABLE `ezvatrule_product_category` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezvatrule_product_category` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezvattype`
---
-
-DROP TABLE IF EXISTS `ezvattype`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezvattype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `percentage` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezvattype`
@@ -3218,20 +1051,6 @@ INSERT INTO `ezvattype` VALUES (1,'Std',0);
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezview_counter`
---
-
-DROP TABLE IF EXISTS `ezview_counter`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezview_counter` (
-  `count` int(11) NOT NULL DEFAULT '0',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`node_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezview_counter`
 --
 
@@ -3239,24 +1058,6 @@ LOCK TABLES `ezview_counter` WRITE;
 /*!40000 ALTER TABLE `ezview_counter` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezview_counter` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezwaituntildatevalue`
---
-
-DROP TABLE IF EXISTS `ezwaituntildatevalue`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezwaituntildatevalue` (
-  `contentclass_attribute_id` int(11) NOT NULL DEFAULT '0',
-  `contentclass_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `workflow_event_id` int(11) NOT NULL DEFAULT '0',
-  `workflow_event_version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`workflow_event_id`,`workflow_event_version`),
-  KEY `ezwaituntildateevalue_wf_ev_id_wf_ver` (`workflow_event_id`,`workflow_event_version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezwaituntildatevalue`
@@ -3268,21 +1069,6 @@ LOCK TABLES `ezwaituntildatevalue` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezwishlist`
---
-
-DROP TABLE IF EXISTS `ezwishlist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezwishlist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `productcollection_id` int(11) NOT NULL DEFAULT '0',
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezwishlist`
 --
 
@@ -3290,27 +1076,6 @@ LOCK TABLES `ezwishlist` WRITE;
 /*!40000 ALTER TABLE `ezwishlist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezwishlist` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezworkflow`
---
-
-DROP TABLE IF EXISTS `ezworkflow`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `is_enabled` int(11) NOT NULL DEFAULT '0',
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `modifier_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `version` int(11) NOT NULL DEFAULT '0',
-  `workflow_type_string` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezworkflow`
@@ -3322,23 +1087,6 @@ LOCK TABLES `ezworkflow` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezworkflow_assign`
---
-
-DROP TABLE IF EXISTS `ezworkflow_assign`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow_assign` (
-  `access_type` int(11) NOT NULL DEFAULT '0',
-  `as_tree` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `workflow_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezworkflow_assign`
 --
 
@@ -3348,34 +1096,6 @@ LOCK TABLES `ezworkflow_assign` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezworkflow_event`
---
-
-DROP TABLE IF EXISTS `ezworkflow_event`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow_event` (
-  `data_int1` int(11) DEFAULT NULL,
-  `data_int2` int(11) DEFAULT NULL,
-  `data_int3` int(11) DEFAULT NULL,
-  `data_int4` int(11) DEFAULT NULL,
-  `data_text1` varchar(255) DEFAULT NULL,
-  `data_text2` varchar(255) DEFAULT NULL,
-  `data_text3` varchar(255) DEFAULT NULL,
-  `data_text4` varchar(255) DEFAULT NULL,
-  `data_text5` longtext,
-  `description` varchar(50) NOT NULL DEFAULT '',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `placement` int(11) NOT NULL DEFAULT '0',
-  `version` int(11) NOT NULL DEFAULT '0',
-  `workflow_id` int(11) NOT NULL DEFAULT '0',
-  `workflow_type_string` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`,`version`),
-  KEY `wid_version_placement` (`workflow_id`,`version`,`placement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezworkflow_event`
 --
 
@@ -3383,24 +1103,6 @@ LOCK TABLES `ezworkflow_event` WRITE;
 /*!40000 ALTER TABLE `ezworkflow_event` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezworkflow_event` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezworkflow_group`
---
-
-DROP TABLE IF EXISTS `ezworkflow_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow_group` (
-  `created` int(11) NOT NULL DEFAULT '0',
-  `creator_id` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `modifier_id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezworkflow_group`
@@ -3413,22 +1115,6 @@ INSERT INTO `ezworkflow_group` VALUES (1024392098,14,1,1024392098,14,'Standard')
 UNLOCK TABLES;
 
 --
--- Table structure for table `ezworkflow_group_link`
---
-
-DROP TABLE IF EXISTS `ezworkflow_group_link`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow_group_link` (
-  `group_id` int(11) NOT NULL DEFAULT '0',
-  `group_name` varchar(255) DEFAULT NULL,
-  `workflow_id` int(11) NOT NULL DEFAULT '0',
-  `workflow_version` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`workflow_id`,`group_id`,`workflow_version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `ezworkflow_group_link`
 --
 
@@ -3436,40 +1122,6 @@ LOCK TABLES `ezworkflow_group_link` WRITE;
 /*!40000 ALTER TABLE `ezworkflow_group_link` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ezworkflow_group_link` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ezworkflow_process`
---
-
-DROP TABLE IF EXISTS `ezworkflow_process`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ezworkflow_process` (
-  `activation_date` int(11) DEFAULT NULL,
-  `content_id` int(11) NOT NULL DEFAULT '0',
-  `content_version` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `event_id` int(11) NOT NULL DEFAULT '0',
-  `event_position` int(11) NOT NULL DEFAULT '0',
-  `event_state` int(11) DEFAULT NULL,
-  `event_status` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_event_id` int(11) NOT NULL DEFAULT '0',
-  `last_event_position` int(11) NOT NULL DEFAULT '0',
-  `last_event_status` int(11) NOT NULL DEFAULT '0',
-  `memento_key` varchar(32) DEFAULT NULL,
-  `modified` int(11) NOT NULL DEFAULT '0',
-  `node_id` int(11) NOT NULL DEFAULT '0',
-  `parameters` longtext,
-  `process_key` varchar(32) NOT NULL DEFAULT '',
-  `session_key` varchar(32) NOT NULL DEFAULT '0',
-  `status` int(11) DEFAULT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `workflow_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `ezworkflow_process_process_key` (`process_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ezworkflow_process`
@@ -3489,4 +1141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-05 17:34:35
+-- Dump completed on 2015-04-05 19:33:34
